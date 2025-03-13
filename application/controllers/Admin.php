@@ -20,7 +20,7 @@ class Admin extends CI_Controller
 
     public function index()
     {
-        $data['acaravote'] = $this->Admin_model->get_acaravote('mAcaraVote')->result();
+        $data['module'] = $this->Admin_model->get_acaravote('m_module')->result();
         $data['title'] = 'admin';
         // print_r($data);
         // exit;

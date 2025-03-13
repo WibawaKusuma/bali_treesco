@@ -6,8 +6,9 @@
         <h1 data-aos="fade-up">Bali Treesco.</h1>
         <p data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint, culpa?</p>
         <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-          <a href="#book-a-table" class="btn-get-started">Pesan Produk</a>
-          <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+          <a href="#" class="btn-get-started">Pesan Produk</a>
+          <!-- <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
+          <a href="https://youtu.be/1HjQQEdO9S8?si=cyMsN6MJdo6b0RN1" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
         </div>
       </div>
       <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
@@ -24,7 +25,7 @@
   <div class="container">
     <div class="row gy-4">
       <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-        <div class="why-box" style="background-color: #42704e;">
+        <div class="why-box" style="background-color: #2e6b3e;">
           <h3>Mengapa Memilih Bali Treesco?</h3>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
@@ -133,13 +134,12 @@
 
 
 <!-- Testimonials Section -->
-<section id="testimonials" class="testimonials section light-background">
+<!-- <section id="testimonials" class="testimonials section light-background">
 
-  <!-- Section Title -->
   <div class="container section-title" data-aos="fade-up">
     <h2>TESTIMONI</h2>
     <p>Apa Kata Mereka <span class="description-title">Tentang Kami</span></p>
-  </div><!-- End Section Title -->
+  </div>
 
   <div class="container" data-aos="fade-up" data-aos-delay="100">
 
@@ -183,7 +183,7 @@
               </div>
             </div>
           </div>
-        </div><!-- End testimonial item -->
+        </div>
 
         <div class="swiper-slide">
           <div class="testimonial-item">
@@ -207,7 +207,7 @@
               </div>
             </div>
           </div>
-        </div><!-- End testimonial item -->
+        </div>
 
         <div class="swiper-slide">
           <div class="testimonial-item">
@@ -231,7 +231,7 @@
               </div>
             </div>
           </div>
-        </div><!-- End testimonial item -->
+        </div>
 
         <div class="swiper-slide">
           <div class="testimonial-item">
@@ -255,7 +255,7 @@
               </div>
             </div>
           </div>
-        </div><!-- End testimonial item -->
+        </div>
 
       </div>
       <div class="swiper-pagination"></div>
@@ -263,7 +263,8 @@
 
   </div>
 
-</section><!-- /Testimonials Section -->
+</section> -->
+<!-- /Testimonials Section -->
 
 <!-- Events Section -->
 <!-- <section id="events" class="events section">

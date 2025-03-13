@@ -16,7 +16,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<div class="d-flex justify-content-center align-items-center min-vh-100">
+<div class="d-flex justify-content-center align-items-center min-vh-100" style="background-color: #1c5236;">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-5">
@@ -35,11 +35,11 @@
                                     <?= $this->session->flashdata('message'); ?>
                                     <form class="user" method="post" action="<?= base_url('auth') ?>">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" name="nim" id="nim" aria-describedby="nimHelp" placeholder="NIM">
-                                            <?= form_error('NIM', '<small class="text-danger pl-4">', '</small>') ?>
+                                            <input type="text" class="form-control form-control-email" name="email" id="email" aria-describedby="emailHelp" placeholder="user name">
+                                            <?= form_error('Email', '<small class="text-danger pl-4">', '</small>') ?>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="Password">
+                                            <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="password">
                                             <?= form_error('password', '<small class="text-danger pl-4">', '</small>') ?>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">

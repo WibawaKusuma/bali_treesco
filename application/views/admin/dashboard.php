@@ -1,64 +1,57 @@
-<?php if ($this->session->flashdata('success')): ?>
-    <div class="alert alert-success alert-dismissible fade show" role="alert" id="success-alert">
-        <?= $this->session->flashdata('success') ?>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-<?php endif; ?>
-<div class="card">
-    <div class="card-header text-right">
-        <a href="<?= base_url('admin/create') ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-striped table-hover table-bordered text-center" id="example1">
-                <thead class="thead-info">
-                    <tr>
-                        <th>Acara Vote</th>
-                        <th>Tanggal</th>
-                        <th>Status</th>
-                        <th><i class="fa fa-gear"></i></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($acaravote as $k): ?>
-                        <tr>
-                            <td><?= $k->nama_acara ?></td>
-                            <td><?= $k->tanggal ?></td>
-                            <!-- <td><?= $k->status ?></td> -->
-                            <td><?php if ($k->status == 1) {
-                                    echo '<p class="text-primary">MULAI</p>';
-                                } else {
-                                    echo '<p class="text-danger">BELUM MULAI</p>';
-                                }
-                                ?></td>
-                            <td>
-                                <a href="<?= base_url('admin/update_vote/' . $k->no_acara) ?>" class="btn btn-warning btn-sm">
-                                    <i class="fa fa-pen"></i>
-                                </a>
-                                <a href="<?= base_url('admin/delete/' . $k->no_acara) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this reservation?');">
-                                    <i class="fa fa-trash"></i>
-                                </a>
+<style>
+    .icon {
+        width: 100px;
+        height: 100px;
+        background-color: #f0f0f0;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 50px;
+    }
 
-                            </td>
+    .icon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+        /* Jarak antara ikon dan teks */
+    }
 
-                        </tr>
-                    <?php endforeach ?>
-                </tbody>
-            </table>
-        </div>
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        /* Pastikan seluruh card-body diisi penuh */
+    }
+
+    h5 {
+        margin: 0;
+        font-size: 16px;
+        text-align: center;
+        text-transform: capitalize;
+    }
+</style>
+<div class="row" style="justify-content: center;">
+    <div class="row" style="width: 80%;">
+        <?php foreach ($module as $k) : ?>
+            <?php if ($k->status == 1) { ?>
+                <div class="col-sm-3">
+                    <div class="card">
+                        <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                            <a href="<?= base_url($k->url) ?>" class="d-flex align-items-center flex-column" title="<?= $k->name ?>">
+                                <div class="icon-container">
+                                    <i class="<?= $k->icon ?> icon"></i>
+                                </div>
+                                <h5 class="text-center text-dark"><?= $k->name ?></h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <?php }
+            ?>
+        <?php endforeach; ?>
     </div>
 </div>
-
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
-<script>
-    $(document).ready(function() {
-        setTimeout(function() {
-            $('#success-alert').fadeOut('slow');
-        }, 3000);
-    });
-</script>

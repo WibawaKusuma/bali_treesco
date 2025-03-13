@@ -11,7 +11,7 @@
 
   <div class="row gy-4">
     <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
-      <img src="<?= base_url('assets/img/about.jpg') ?>" class="img-fluid mb-4" alt="">
+      <img src="<?= base_url('assets/img/event/event-4.jpg') ?>" class="img-fluid mb-4" alt="">
       <!-- <div class="book-a-table">
         <h3>Book a Table</h3>
         <p>+1 5589 55488 55</p>

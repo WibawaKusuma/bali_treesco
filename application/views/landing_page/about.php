@@ -140,7 +140,7 @@
       <div class="col-lg-2 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
         <div class="team-member">
           <div class="member-img">
-            <img src="<?= base_url('assets/img/team/agus.png') ?>" class="img-fluid" alt="">
+            <img src="<?= base_url('assets/img/team/ADI.png') ?>" class="img-fluid" alt="">
             <div class="social">
               <a href=""><i class="bi bi-twitter-x"></i></a>
               <a href=""><i class="bi bi-facebook"></i></a>

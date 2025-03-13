@@ -440,11 +440,17 @@
       <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-1.jpg') ?>"><img src="<?= base_url('assets/img/event/event-1.jpg') ?>" class="img-fluid" alt=""></a></div>
       <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-2.jpg') ?>"><img src="<?= base_url('assets/img/event/event-2.jpg') ?>" class="img-fluid" alt=""></a></div>
       <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-3.jpg') ?>"><img src="<?= base_url('assets/img/event/event-3.jpg') ?>" class="img-fluid" alt=""></a></div>
-      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-4.jpg') ?>"><img src="<?= base_url('assets/img/event/event-4.jpg') ?>" class="img-fluid" alt=""></a></div>
-      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-1.jpg') ?>"><img src="<?= base_url('assets/img/event/event-1.jpg') ?>" class="img-fluid" alt=""></a></div>
+      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-5.jpg') ?>"><img src="<?= base_url('assets/img/event/event-5.jpg') ?>" class="img-fluid" alt=""></a></div>
+      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-6.jpg') ?>"><img src="<?= base_url('assets/img/event/event-6.jpg') ?>" class="img-fluid" alt=""></a></div>
+      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-7.jpg') ?>"><img src="<?= base_url('assets/img/event/event-7.jpg') ?>" class="img-fluid" alt=""></a></div>
+      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-8.jpg') ?>"><img src="<?= base_url('assets/img/event/event-8.jpg') ?>" class="img-fluid" alt=""></a></div>
+      <!-- <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-1.jpg') ?>"><img src="<?= base_url('assets/img/event/event-1.jpg') ?>" class="img-fluid" alt=""></a></div>
       <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-2.jpg') ?>"><img src="<?= base_url('assets/img/event/event-2.jpg') ?>" class="img-fluid" alt=""></a></div>
       <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-3.jpg') ?>"><img src="<?= base_url('assets/img/event/event-3.jpg') ?>" class="img-fluid" alt=""></a></div>
-      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-4.jpg') ?>"><img src="<?= base_url('assets/img/event/event-4.jpg') ?>" class="img-fluid" alt=""></a></div>
+      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-5.jpg') ?>"><img src="<?= base_url('assets/img/event/event-5.jpg') ?>" class="img-fluid" alt=""></a></div>
+      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-6.jpg') ?>"><img src="<?= base_url('assets/img/event/event-6.jpg') ?>" class="img-fluid" alt=""></a></div>
+      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-8.jpg') ?>"><img src="<?= base_url('assets/img/event/event-8.jpg') ?>" class="img-fluid" alt=""></a></div>
+      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-7.jpg') ?>"><img src="<?= base_url('assets/img/event/event-7.jpg') ?>" class="img-fluid" alt=""></a></div> -->
     </div>
     <div class="swiper-pagination"></div>
   </div>

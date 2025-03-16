@@ -1,302 +1,173 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Admin extends CI_Controller
+class Product extends CI_Controller
 {
+
     public function __construct()
     {
         parent::__construct();
         $this->load->library('session');
-        $this->load->library('upload');
-        $this->load->library('form_validation');
-
-        // $this->load->library(['form_validation', 'upload', 'session']);
-        // $this->load->helper(['form', 'url']);
-
 
         $this->load->model('Admin_model');
-        $this->load->model('Vote_model');
+        $this->load->model('User_model');
+        $this->load->model('General_model');
     }
 
     public function index()
     {
-        $data['module'] = $this->Admin_model->get_acaravote('m_module')->result();
-        $data['title'] = 'admin';
-        $data['user'] = $this->db->get_where('m_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = 'Product';
+        $data['product'] = $this->General_model->get_data('m_product')->result();
 
-        // print_r($data);
-        // exit;
+        $data['user'] = $this->db->get_where('m_user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar_admin', $data);
-        $this->load->view('admin/dashboard');
+        $this->load->view('product/datatable', $data);
         $this->load->view('templates/footer');
     }
 
     public function create()
     {
-        $data = [
-            'title' => 'Create Voting',
-            'no_acara' => $this->Admin_model->generate_reservation_number(),
-            'dropdown_prodi' => $this->Admin_model->get_prodi(),
-        ];
+        $data['title'] = 'Create Product';
+        $data['user'] = $this->db->get_where('m_user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/topbar');
-        $this->load->view('templates/sidebar_admin');
-        $this->load->view('admin/form', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar_admin', $data);
+        $this->load->view('product/form', $data);
         $this->load->view('templates/footer');
     }
 
-
-    public function create_vote()
+    public function create_product()
     {
-        $this->load->model('Admin_model');
-        $vote_data = $this->input->post('p');
-
-        if (empty($vote_data['nama_acara']) || empty($vote_data['tanggal'])) {
-            $this->session->set_flashdata('error', 'Nama acara dan tanggal wajib diisi!');
-            redirect('admin/create_vote');
-        }
-
-        $vote_data['created_at'] = date('Y-m-d H:i:s');
-
-        if ($this->Admin_model->save_vote($vote_data)) {
-            // Mendapatkan no_acara yang baru saja disimpan
-            $no_acara = $this->Admin_model->get_last_insert_id(); // Ambil ID acara yang baru saja disimpan
-
-            $this->session->set_flashdata('success', 'Data acara berhasil disimpan!');
-
-            redirect('admin/create_vote_detail/' . $no_acara);
-        } else {
-            $this->session->set_flashdata('error', 'Gagal menyimpan data acara!');
-            redirect('admin/create_vote');
-        }
-    }
-
-    public function update_vote($no_acara)
-    {
-        $this->load->model('Admin_model');
-        $detail_kandidat = $this->Admin_model->get_detail_kandidat($no_acara);
-
-        // print_r($detail_kandidat);
-        // exit;
-
         if ($this->input->post()) {
+            $data = $this->input->post('p');
 
-            $vote_data = $this->input->post('p');
-            // print_r($vote_data);
-            // exit;
+            // Konfigurasi upload
+            $config['upload_path'] = './assets/img/product';
+            $config['allowed_types'] = 'jpeg|jpg|png|gif'; // Pastikan jpg ditambahkan
+            $config['file_name'] = $_FILES['image']['name']; // Menggunakan timestamp untuk menghindari nama file duplikat
 
-            if (empty($vote_data['nama_acara']) || empty($vote_data['tanggal'])) {
-                $this->session->set_flashdata('error', 'Nama acara dan tanggal wajib diisi!');
-                redirect('admin/update_vote/' . $no_acara);
-            }
-
-            $vote_data['updated_at'] = date('Y-m-d H:i:s');
-
-
-            if ($this->Admin_model->update_vote($no_acara, $vote_data)) {
-                $this->session->set_flashdata('success', 'Data acara berhasil disimpan!');
-                redirect('admin');
-                $this->session->set_flashdata('error', 'Gagal menyimpan data acara!');
-                redirect('admin/update_vote/' . $no_acara);
-            }
-        } else {
-            // Jika form belum disubmit, ambil data acara berdasarkan NoAcara
-            $vote = $this->Admin_model->get_vote_by_no_acara($no_acara);
-            if (!$vote) {
-                show_404();
-            }
-
-            $data['title'] = 'Update Vote';
-            $data['vote'] = $vote;
-            $data['no_acara'] = $no_acara;
-            $data['detail_kandidat'] = $detail_kandidat;
-            $data['dropdown_prodi'] = $this->Admin_model->get_prodi();
-            // print_r($vote);
-            // exit;
-
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/topbar');
-            $this->load->view('templates/sidebar_admin');
-            $this->load->view('admin/form', $data);
-            $this->load->view('templates/footer');
-        }
-    }
-
-    public function create_vote_detail($no_acara)
-    {
-        $acara = $this->Admin_model->get_vote_by_no_acara($no_acara);
-        if (!$acara) {
-            $this->session->set_flashdata('error', 'Nomor acara tidak ditemukan!');
-            redirect('admin');
-        }
-
-        if ($this->input->server('REQUEST_METHOD') === 'POST') {
-            $detail_data = $this->input->post('d');
-
-            $this->form_validation->set_rules('d[nama_kandidat]', 'Nama Kandidat', 'required');
-            $this->form_validation->set_rules('d[visi]', 'Visi', 'required');
-            $this->form_validation->set_rules('d[misi]', 'Misi', 'required');
-
-            if ($this->form_validation->run() == FALSE) {
-                $this->session->set_flashdata('error', validation_errors());
-                redirect('admin/create_vote_detail/' . $no_acara);
-            }
-
-            $config['upload_path'] = './assets/template/img/kandidat';
-            $config['allowed_types'] = 'jpeg|jpg|png|gif';
-            $config['file_name'] = time() . '_' . $_FILES['image']['name'];
-            $config['overwrite'] = FALSE;
-            $config['max_size'] = 2048; // 2MB
-
-            $this->upload->initialize($config);
-
-            if (!isset($_FILES['image']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) {
-                $this->session->set_flashdata('error', 'Tidak ada file yang dipilih atau file terlalu besar.');
-                redirect('admin/create_vote_detail/' . $no_acara);
-            }
-
-            if (!$this->upload->do_upload('image')) {
-                $error = $this->upload->display_errors('', '');
-                $this->session->set_flashdata('error', "Upload image gagal! Error: $error");
-                redirect('admin/create_vote_detail/' . $no_acara);
-            } else {
-                $upload_data = $this->upload->data();
-                $detail_data['image'] = $upload_data['file_name'];
-            }
-
-            $detail_data['created_at'] = date('Y-m-d H:i:s');
-            $detail_data['no_acara'] = $no_acara;
-
-
-            if ($this->Admin_model->save_vote_detail($detail_data)) {
-                $this->session->set_flashdata('success', 'Detail kandidat berhasil disimpan!');
-                redirect('admin/update_vote/' . $no_acara);
-            } else {
-                $this->session->set_flashdata('error', 'Gagal menyimpan detail kandidat!');
-                redirect('admin/create_vote_detail/' . $no_acara);
-            }
-        }
-
-        $data = [
-            'title' => 'Tambah Detail Kandidat',
-            'vote' => $this->Admin_model->get_vote_by_no_acara($no_acara),
-            'no_acara' => $no_acara
-        ];
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/topbar');
-        $this->load->view('templates/sidebar_admin');
-        $this->load->view('admin/form_detail', $data);
-        $this->load->view('templates/footer');
-    }
-
-    public function hapus_kandidat($id_detail, $no_acara)
-    {
-        $this->load->model('Admin_model');
-
-        if ($this->Admin_model->delete_kandidat($id_detail)) {
-            $this->session->set_flashdata('success', 'Kandidat berhasil dihapus!');
-        } else {
-            $this->session->set_flashdata('error', 'Gagal menghapus kandidat!');
-        }
-        redirect('admin/update_vote/' . $no_acara);
-    }
-
-
-
-    public function update_kandidat($id_detail)
-    {
-        $detail_kandidat = $this->Admin_model->get_detail_kandidat_by_id($id_detail);
-
-        if (!$detail_kandidat) {
-            show_404();
-        }
-
-        if ($this->input->server('REQUEST_METHOD') === 'POST') {
-            $data = [
-                'nama_kandidat' => $this->input->post('nama_kandidat'),
-                'visi' => $this->input->post('visi'),
-                'misi' => $this->input->post('misi'),
-            ];
-
-            $this->form_validation->set_rules('nama_kandidat', 'Nama Kandidat', 'required');
-            $this->form_validation->set_rules('visi', 'Visi', 'required');
-            $this->form_validation->set_rules('misi', 'Misi', 'required');
-
-            if ($this->form_validation->run() == FALSE) {
-                $this->session->set_flashdata('error', validation_errors());
-                redirect(current_url());
-                return;
-            }
-
-            $old_image_path = './assets/template/img/kandidat/' . $detail_kandidat->image;
-
-            $config['upload_path'] = './assets/template/img/kandidat';
-            $config['allowed_types'] = 'jpeg|jpg|png|gif';
-            $config['file_name'] = time() . '_' . $_FILES['image']['name']; // Nama file unik
-            $config['overwrite'] = FALSE;
-            $config['max_size'] = 2048; // 2MB
-
+            // Load library upload
             $this->load->library('upload', $config);
 
+            // Cek apakah ada file yang di-upload
             if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-
+                // Lakukan upload file
                 if (!$this->upload->do_upload('image')) {
-
+                    // Jika upload gagal
                     $error = $this->upload->display_errors();
-                    $this->session->set_flashdata('error', "Upload image gagal! Error: " . $error);
-                    redirect(current_url());
+                    echo "Upload image gagal! Error: " . $error;
+                    die();
                 } else {
+                    // Jika upload berhasil
+                    $upload_data = $this->upload->data(); // Ambil data file yang di-upload
+                    $data['image'] = $upload_data['file_name']; // Simpan nama file ke data
+                }
+            } else {
+                echo "Upload image gagal! Error: Tidak ada file yang dipilih atau file terlalu besar.";
+                die();
+            }
 
-                    $upload_data = $this->upload->data();
-                    $data['image'] = $upload_data['file_name'];
+            // Tambahkan timestamp untuk CreatedAt dan UpdatedAt
+            $data['created_at'] = date('Y-m-d H:i:s'); // Gunakan format datetime
 
+            // Simpan ke database
+            $this->General_model->insert_data($data, 'm_product');
+            $this->session->set_flashdata('success', 'Product berhasil ditambahkan!');
+            redirect('product');
+        } else {
+            // Jika tidak ada data POST, tampilkan form
+            $this->load->view('product/form');
+        }
+    }
 
+    public function update($id_product)
+    {
+        $data['user'] = $this->db->get_where('m_user', ['email' => $this->session->userdata('email')])->row_array();
+
+        if ($this->input->post()) {
+            $data = $this->input->post('p');
+            $data['created_at'] = date('Y-m-d H:i:s'); // Set timestamp untuk update
+
+            // Ambil data product lama untuk mendapatkan nama file gambar yang lama
+            $old_product = $this->db->get_where('m_product', ['id_product' => $id_product])->row();
+            $old_image_path = './assets/img/product/' . $old_product->image; // Path gambar lama
+
+            // Konfigurasi upload
+            $config['upload_path'] = './assets/img/product';
+            $config['allowed_types'] = 'jpeg|jpg|png|gif'; // Pastikan jpg ditambahkan
+            $config['file_name'] = time() . '_' . $_FILES['image']['name']; // Nama file unik
+
+            // Load library upload
+            $this->load->library('upload', $config);
+
+            // Cek apakah ada file yang di-upload
+            if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+                // Lakukan upload file
+                if (!$this->upload->do_upload('image')) {
+                    // Jika upload gagal
+                    $error = $this->upload->display_errors();
+                    echo "Upload image gagal! Error: " . $error;
+                    die();
+                } else {
+                    // Jika upload berhasil
+                    $upload_data = $this->upload->data(); // Ambil data file yang di-upload
+                    $data['image'] = $upload_data['file_name']; // Simpan nama file ke data
+
+                    // Hapus gambar lama jika ada
                     if (file_exists($old_image_path)) {
-                        unlink($old_image_path);
+                        unlink($old_image_path); // Hapus file gambar lama
                     }
                 }
             } else {
-                $data['image'] = $detail_kandidat->image;
+                // Jika tidak ada gambar baru, tetap gunakan gambar lama
+                $data['image'] = $old_product->image; // Tetap menggunakan gambar lama
             }
 
-            $update = $this->Admin_model->update_kandidat($id_detail, $data);
+            // print_r($data);
+            // exit;
 
-            if ($update) {
-                $this->session->set_flashdata('success', 'Data kandidat berhasil diperbarui.');
-                redirect('admin/update_vote/' . $detail_kandidat->no_acara);
-            } else {
-                $this->session->set_flashdata('error', 'Gagal memperbarui data kandidat.');
-                redirect(current_url());
-            }
+            // Update data ke database
+            $this->db->where('id_product', $id_product);
+            $this->General_model->update($data, 'm_product');
+
+            // Set flashdata untuk notifikasi
+            $this->session->set_flashdata('success', 'Product berhasil diubah!');
+            redirect('product');
+        } else {
+            // Ambil data product jika tidak ada post
+            $data['product'] = $this->db->get_where('m_product', ['id_product' => $id_product])->row();
         }
 
-        $data['title'] = 'Update Kandidat';
-        $data['detail_kandidat'] = $detail_kandidat;
-
+        // Set judul dan load view
+        $data['title'] = 'Edit Product';
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/topbar');
-        $this->load->view('templates/sidebar_admin');
-        $this->load->view('admin/form_update', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar_admin', $data);
+        $this->load->view('product/form', $data);
         $this->load->view('templates/footer');
+
+
+        // $this->load->view('templates/header', $data);
+        // $this->load->view('templates/topbar', $data);
+        // $this->load->view('templates/sidebar_admin', $data);
+        // $this->load->view('product/form', $data);
+        // $this->load->view('templates/footer');
     }
 
-    public function delete($no_acara)
+    public function delete($id_product)
     {
-        $this->load->model('Admin_model');
+        // Hapus data berdasarkan NoReservasi
+        $this->db->where('id_product', $id_product);
+        $this->db->delete('m_product');
 
-        // Attempt to delete the event (vote) based on no_acara
-        if ($this->Admin_model->delete_vote($no_acara)) {
-            $this->session->set_flashdata('success', 'Acara berhasil dihapus!');
-        } else {
-            $this->session->set_flashdata('error', 'Gagal menghapus acara!');
-        }
+        // Set flashdata untuk pesan sukses
+        $this->session->set_flashdata('success', 'Product berhasil dihapus!');
 
-        // Redirect back to the admin dashboard
-        redirect('admin');
+        // Redirect ke halaman daftar reservasi
+        redirect('product');
     }
 }

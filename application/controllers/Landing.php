@@ -7,12 +7,14 @@ class Landing extends CI_Controller
     {
         parent::__construct();
         // $this->load->model('Destination_model');
-        // $this->load->model('Armada_model');
+        $this->load->model('Admin_model');
+        $this->load->model('General_model');
     }
 
     public function index()
     {
         @$data['title'] = 'Home';
+        $data['galery'] = $this->General_model->get_data('m_galery')->result();
         // $data['destination'] = $this->Destination_model->get_destination('mdestination')->result();
         // $data['config'] = $this->Destination_model->get_config('config')->row();
 
@@ -37,7 +39,8 @@ class Landing extends CI_Controller
     public function product()
     {
         $data['title'] = 'Product';
-        // $data['destination'] = $this->Destination_model->get_destination('mdestination')->result();
+        $data['detail'] = $this->Admin_model->get_acaravote('m_product')->result();
+
         // $data['config'] = $this->Destination_model->get_config('config')->row();
 
 

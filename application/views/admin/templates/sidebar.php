@@ -22,7 +22,7 @@
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $user['name'] ?></span>
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= @$user['name'] ?></span>
                         <img class="img-profile rounded-circle" style="width: 30px;" src=" <?= base_url('assets/img/profile/default.png') ?>">
                     </a>
                     <!-- Dropdown - User Information -->
@@ -46,8 +46,8 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
-                <img src="<?= base_url('assets/template/') ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">aluh trans</span>
+                <img src="<?= base_url('assets/img/') ?>logo-bali-treeco-round.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">Bali Treesco</span>
             </a>
 
             <!-- Sidebar -->

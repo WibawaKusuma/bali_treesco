@@ -6,7 +6,7 @@
         <h1 data-aos="fade-up">Bali Treesco.</h1>
         <p data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint, culpa?</p>
         <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-          <a href="#" class="btn-get-started">Pesan Produk</a>
+          <a href="<?php echo base_url('landing/product') ?>" class="btn-get-started">Lihat Produk</a>
           <!-- <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
           <a href="https://youtu.be/1HjQQEdO9S8?si=cyMsN6MJdo6b0RN1" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
         </div>
@@ -21,10 +21,10 @@
 
 
 <!-- Why Us Section -->
-<section id="why-us" class="why-us section light-background">
+<section id="why-us" class="why-us section">
   <div class="container">
     <div class="row gy-4">
-      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="col-lg-4 rounded-5" data-aos="fade-up" data-aos-delay="100">
         <div class="why-box" style="background-color: #2e6b3e;">
           <h3>Mengapa Memilih Bali Treesco?</h3>
           <p>
@@ -402,7 +402,7 @@
 <div class="container section-title" data-aos="fade-up" style="margin-top: 5%;">
   <h2>Galeri</h2>
   <p><span>Cek</span> <span class="description-title">Galeri Kami</span></p>
-</div><!-- End Section Title -->
+</div>
 
 <div class="container section" data-aos="fade-up" data-aos-delay="100">
 
@@ -438,24 +438,14 @@
       }
     </script>
     <div class="swiper-wrapper align-items-center">
-      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-1.jpg') ?>"><img src="<?= base_url('assets/img/event/event-1.jpg') ?>" class="img-fluid" alt=""></a></div>
-      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-2.jpg') ?>"><img src="<?= base_url('assets/img/event/event-2.jpg') ?>" class="img-fluid" alt=""></a></div>
-      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-3.jpg') ?>"><img src="<?= base_url('assets/img/event/event-3.jpg') ?>" class="img-fluid" alt=""></a></div>
-      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-5.jpg') ?>"><img src="<?= base_url('assets/img/event/event-5.jpg') ?>" class="img-fluid" alt=""></a></div>
-      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-6.jpg') ?>"><img src="<?= base_url('assets/img/event/event-6.jpg') ?>" class="img-fluid" alt=""></a></div>
-      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-7.jpg') ?>"><img src="<?= base_url('assets/img/event/event-7.jpg') ?>" class="img-fluid" alt=""></a></div>
-      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-8.jpg') ?>"><img src="<?= base_url('assets/img/event/event-8.jpg') ?>" class="img-fluid" alt=""></a></div>
-      <!-- <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-1.jpg') ?>"><img src="<?= base_url('assets/img/event/event-1.jpg') ?>" class="img-fluid" alt=""></a></div>
-      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-2.jpg') ?>"><img src="<?= base_url('assets/img/event/event-2.jpg') ?>" class="img-fluid" alt=""></a></div>
-      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-3.jpg') ?>"><img src="<?= base_url('assets/img/event/event-3.jpg') ?>" class="img-fluid" alt=""></a></div>
-      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-5.jpg') ?>"><img src="<?= base_url('assets/img/event/event-5.jpg') ?>" class="img-fluid" alt=""></a></div>
-      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-6.jpg') ?>"><img src="<?= base_url('assets/img/event/event-6.jpg') ?>" class="img-fluid" alt=""></a></div>
-      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-8.jpg') ?>"><img src="<?= base_url('assets/img/event/event-8.jpg') ?>" class="img-fluid" alt=""></a></div>
-      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/event/event-7.jpg') ?>"><img src="<?= base_url('assets/img/event/event-7.jpg') ?>" class="img-fluid" alt=""></a></div> -->
+      <?php foreach (@$galery as $k) : ?>
+        <?php if ($k->status == 0) { ?>
+          <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/galery/' . $k->image) ?>"><img src="<?= base_url('assets/img/galery/' . $k->image) ?>" class="img-fluid" alt=""></a></div>
+        <?php } ?>
+      <?php endforeach ?>
     </div>
     <div class="swiper-pagination"></div>
   </div>
-
 </div>
 
 <!-- </section> -->

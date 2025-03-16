@@ -4,10 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>vote app | <?= $title ?></title>
+    <title>vote app | <?= @$title ?></title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link href="<?= base_url('assets/img/favicon-logo-bali-treeco.png') ?>" rel=" icon">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?= base_url('assets/template') ?>/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->

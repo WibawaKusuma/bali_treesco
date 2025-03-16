@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Armada_model extends CI_Model
+class General_model extends CI_Model
 {
 
     public function get_config($table)
@@ -28,5 +28,11 @@ class Armada_model extends CI_Model
     {
         $this->db->where('id_armada', $id_armada);
         return $this->db->delete('marmada');
+    }
+
+
+    public function get_data($table)
+    {
+        return $this->db->get($table);
     }
 }

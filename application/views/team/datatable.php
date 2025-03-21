@@ -9,27 +9,34 @@
 <?php endif; ?>
 <div class="card">
     <div class="card-header text-right">
-        <a href="<?= base_url('galery/create') ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+        <a href="<?= base_url('team/create') ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
     </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-striped table-hover table-bordered text-center" id="example1">
                 <thead class="thead-info">
                     <tr>
-                        <th>ID</th>
+                        <th>No</th>
                         <th>Nama</th>
+                        <th>Deskripsi</th>
+                        <th>Telepon</th>
+                        <th>Instagram</th>
+                        <th>Tiktok</th>
                         <th>Status</th>
-                        <!-- <th>Type</th>
-                        <th>Tahun</th> -->
+                        <!-- <th>Tahun</th>  -->
                         <th><i class="fa fa-gear"></i></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $no = 1 ?>
-                    <?php foreach ($galery as $k): ?>
+                    <?php foreach ($team as $k): ?>
                         <tr>
                             <td><?= $no++ ?></td>
                             <td><?= $k->name ?></td>
+                            <td><?= $k->description ?></td>
+                            <td><?= $k->phone ?></td>
+                            <td><?= $k->instagram ?></td>
+                            <td><?= $k->tiktok ?></td>
                             <td>
                                 <?php if ($k->status == 1): ?>
                                     <span class="badge bg-success">AKTIF</span>
@@ -37,13 +44,12 @@
                                     <span class="badge bg-danger">NON-AKTIF</span>
                                 <?php endif; ?>
                             </td>
-                            <!-- <td><?= $k->type ?></td>
-                            <td><?= $k->tahun ?></td> -->
+                            <!-- <td><?= $k->tahun ?></td>  -->
                             <td>
-                                <a href="<?= base_url('galery/update/' . $k->id_galery) ?>" class="btn btn-warning btn-sm">
+                                <a href="<?= base_url('team/update/' . $k->id_team) ?>" class="btn btn-warning btn-sm">
                                     <i class="fa fa-pen"></i>
                                 </a>
-                                <a href="<?= base_url('galery/delete/' . $k->id_galery) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this reservation?');">
+                                <a href="<?= base_url('team/delete/' . $k->id_team) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this reservation?');">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>

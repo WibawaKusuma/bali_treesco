@@ -8,8 +8,8 @@
                 <i class="bi bi-geo-alt icon"></i>
                 <div class="address">
                     <h4>Alamat</h4>
-                    <p>A108 Adam Street</p>
-                    <p>New York, NY 535022</p>
+                    <p><?= @$config['company_address'] ?></p>
+                    <p><?= @$config['company_city'] ?>, <?= @$config['company_province'] ?></p>
                     <p></p>
                 </div>
 
@@ -20,8 +20,8 @@
                 <div>
                     <h4>Kontak</h4>
                     <p>
-                        <strong>Telpon:</strong> <span>+6289690000509</span><br>
-                        <strong>Email:</strong> <span>balitreesco@gmail.com</span><br>
+                        <strong>Telpon:</strong> <span><?= @$config['company_phone'] ?></span><br>
+                        <strong>Email:</strong> <span><?= @$config['company_email'] ?></span><br>
                     </p>
                 </div>
             </div>
@@ -52,7 +52,7 @@
     </div>
 
     <div class="container copyright text-center mt-4">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">Bali Treesco</strong> <span>All Rights Reserved</span></p>
+        <p>© <span>Copyright</span> <strong class="px-1 sitename"><?= @$config['company_name'] ?></strong> <span>All Rights Reserved</span></p>
         <div class="credits">
             <!-- All the links in the footer should remain intact. -->
             <!-- You can delete the links only if you've purchased the pro version. -->

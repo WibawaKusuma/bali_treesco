@@ -32,8 +32,8 @@
                     <label for="status" class="col-12 col-sm-2 col-form-label">Status</label>
                     <div class="col-12 col-sm-10">
                         <select id="status" name="p[status]" class="form-control" required>
-                            <option value="1" <?php @$product->status == 1 ? 'Checked' : '' ?>>Aktif</option>
-                            <option value="0" <?php @$product->status == 0 ? 'Checked' : '' ?>>Tidak Aktif</option>
+                            <option value="1" <?= isset($product->status) && $product->status === '1' ? 'selected="selected"' : '' ?>>Aktif</option>
+                            <option value="0" <?= isset($product->status) && $product->status === '0' ? 'selected="selected"' : '' ?>>Tidak Aktif</option>
                         </select>
                     </div>
                 </div>

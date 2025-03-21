@@ -4,7 +4,7 @@
     <div class="row gy-4 justify-content-center justify-content-lg-between">
       <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center">
         <h1 data-aos="fade-up">Bali Treesco.</h1>
-        <p data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint, culpa?</p>
+        <p data-aos="fade-up" data-aos-delay="100">Sweet by Nature, Healthy by Choice.</p>
         <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
           <a href="<?php echo base_url('landing/product') ?>" class="btn-get-started">Lihat Produk</a>
           <!-- <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
@@ -439,7 +439,7 @@
     </script>
     <div class="swiper-wrapper align-items-center">
       <?php foreach (@$galery as $k) : ?>
-        <?php if ($k->status == 0) { ?>
+        <?php if ($k->status == 1) { ?>
           <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="<?= base_url('assets/img/galery/' . $k->image) ?>"><img src="<?= base_url('assets/img/galery/' . $k->image) ?>" class="img-fluid" alt=""></a></div>
         <?php } ?>
       <?php endforeach ?>

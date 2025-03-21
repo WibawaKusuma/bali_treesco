@@ -15,11 +15,15 @@ class Landing extends CI_Controller
     {
         @$data['title'] = 'Home';
         $data['galery'] = $this->General_model->get_data('m_galery')->result();
-        // $data['destination'] = $this->Destination_model->get_destination('mdestination')->result();
         // $data['config'] = $this->Destination_model->get_config('config')->row();
+        $config_data = $this->General_model->get_config('config')->result();
 
-        // print_r($data);
-        // exit;
+        $config_array = [];
+        foreach ($config_data as $item) {
+            $config_array[$item->name] = $item->value;
+        }
+
+        $data['config'] = $config_array;
 
         $this->load->view('templates/header_landingpage', $data);
         $this->load->view('landing_page/index');
@@ -28,8 +32,16 @@ class Landing extends CI_Controller
     public function about()
     {
         @$data['title'] = 'About Us';
+        $data['team'] = $this->General_model->get_data('m_team')->result();
         // $data['config'] = $this->Destination_model->get_config('config')->row();
+        $config_data = $this->General_model->get_config('config')->result();
 
+        $config_array = [];
+        foreach ($config_data as $item) {
+            $config_array[$item->name] = $item->value;
+        }
+
+        $data['config'] = $config_array;
 
         $this->load->view('templates/header_landingpage', $data);
         $this->load->view('landing_page/about');
@@ -40,12 +52,17 @@ class Landing extends CI_Controller
     {
         $data['title'] = 'Product';
         $data['detail'] = $this->Admin_model->get_acaravote('m_product')->result();
+        $config_data = $this->General_model->get_config('config')->result();
+
+        $config_array = [];
+        foreach ($config_data as $item) {
+            $config_array[$item->name] = $item->value;
+        }
+
+        $data['config'] = $config_array;
 
         // $data['config'] = $this->Destination_model->get_config('config')->row();
 
-
-        // print_r($data);
-        // exit;
         $this->load->view('templates/header_landingpage', $data);
         $this->load->view('landing_page/product');
         $this->load->view('templates/footer_landingpage');
@@ -54,7 +71,20 @@ class Landing extends CI_Controller
     public function contact()
     {
         $data['title'] = 'Contact';
-        // $data['config'] = $this->Destination_model->get_config('config')->row();
+        // Ambil data dari tabel `config`
+        $config_data = $this->General_model->get_config('config')->result();
+
+        // Konversi array objek menjadi array asosiatif
+        $config_array = [];
+        foreach ($config_data as $item) {
+            $config_array[$item->name] = $item->value;
+        }
+
+        // Simpan ke dalam $data['config']
+        $data['config'] = $config_array;
+
+        // print_r($data);
+        // exit;
 
 
         $this->load->view('templates/header_landingpage', $data);

@@ -129,6 +129,10 @@ class Team extends CI_Controller
 
             // Update data ke database
             $this->db->where('id_team', $id_team);
+
+            // print_r($data);
+            // exit;
+
             $this->General_model->update($data, 'm_team');
 
             // Set flashdata untuk notifikasi

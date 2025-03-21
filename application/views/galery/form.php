@@ -16,6 +16,15 @@
                         <input type="text" id="name" name="p[name]" value="<?= !empty($galery) ? $galery->name : '' ?>" class="form-control" required>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label for="status" class="col-12 col-sm-2 col-form-label">Status</label>
+                    <div class="col-12 col-sm-10">
+                        <select id="status" name="p[status]" class="form-control" required>
+                            <option value="1" <?= isset($galery->status) && $galery->status === '1' ? 'selected="selected"' : '' ?>>Aktif</option>
+                            <option value="0" <?= isset($galery->status) && $galery->status === '0' ? 'selected="selected"' : '' ?>>Tidak Aktif</option>
+                        </select>
+                    </div>
+                </div>
 
                 <!-- Input Gambar -->
                 <div class="form-group row">

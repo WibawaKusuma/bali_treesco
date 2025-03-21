@@ -20,7 +20,7 @@
           <i class="icon bi bi-geo-alt flex-shrink-0"></i>
           <div>
             <h3>Alamat</h3>
-            <p>Jl. Tukad Badung No.135, Renon, Denpasar Selatan, Kota Denpasar, Bali 80226</p>
+            <p><?= @$config['company_address'] ?> <?= @$config['company_city'] ?>, <?= @$config['company_province'] ?></p>
           </div>
         </div>
       </div><!-- End Info Item -->
@@ -30,7 +30,7 @@
           <i class="icon bi bi-telephone flex-shrink-0"></i>
           <div>
             <h3>Telpon</h3>
-            <p>+6289690000509</p>
+            <p><?= @$config['company_phone'] ?></p>
           </div>
         </div>
       </div><!-- End Info Item -->
@@ -40,7 +40,7 @@
           <i class="icon bi bi-envelope flex-shrink-0"></i>
           <div>
             <h3>Email</h3>
-            <p>balitreesco@gmail.com</p>
+            <p><?= @$config['company_email'] ?></p>
           </div>
         </div>
       </div><!-- End Info Item -->

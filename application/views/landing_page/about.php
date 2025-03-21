@@ -65,25 +65,36 @@
   </div>
   <div class="container d-flex justify-content-center">
     <div class="row gy-4 justify-content-center">
-      <div class="col-lg-2 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-        <div class="team-member">
-          <div class="member-img">
-            <img src="<?= base_url('assets/img/team/LISSA.png') ?>" class="img-fluid" alt="">
-            <div class="social">
-              <a href=""><i class="bi bi-twitter-x"></i></a>
-              <a href=""><i class="bi bi-facebook"></i></a>
-              <a href=""><i class="bi bi-instagram"></i></a>
-              <a href=""><i class="bi bi-linkedin"></i></a>
+
+
+      <?php foreach (@$team as $k) : ?>
+        <?php if ($k->status == 1) { ?>
+          <div class="col-lg-2 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+            <div class="team-member">
+              <div class="member-img">
+                <img src="<?= base_url('assets/img/team/' . $k->image) ?>" class="img-fluid" alt="">
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter-x"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href="https://www.instagram.com/<?= htmlspecialchars($k->instagram) ?>/" target="_blank" rel="noopener noreferrer">
+                    <i class="bi bi-instagram"></i>
+                  </a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4><?= $k->name ?></h4>
+                <span><?= $k->description ?></span>
+              </div>
             </div>
           </div>
-          <div class="member-info">
-            <h4>Lissa</h4>
-            <span>CEO</span>
-          </div>
-        </div>
-      </div>
+        <?php } ?>
+      <?php endforeach ?>
 
-      <div class="col-lg-2 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+
+
+
+      <!-- <div class="col-lg-2 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
         <div class="team-member">
           <div class="member-img">
             <img src="<?= base_url('assets/img/team/INTAN.png') ?>" class="img-fluid" alt="">
@@ -99,9 +110,9 @@
             <span>Hustler</span>
           </div>
         </div>
-      </div>
+      </div> -->
 
-      <div class="col-lg-2 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+      <!-- <div class="col-lg-2 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
         <div class="team-member">
           <div class="member-img">
             <img src="<?= base_url('assets/img/team/ADHI.png') ?>" class="img-fluid" alt="">
@@ -153,7 +164,7 @@
             <span>Hacker</span>
           </div>
         </div>
-      </div>
+      </div> -->
 
     </div>
   </div>

@@ -19,6 +19,7 @@
                         <th>No</th>
                         <th>Nama</th>
                         <th>Harga</th>
+                        <th>Status</th>
                         <!-- <th>Tahun</th>  -->
                         <th><i class="fa fa-gear"></i></th>
                     </tr>
@@ -30,6 +31,13 @@
                             <td><?= $no++ ?></td>
                             <td><?= $k->name ?></td>
                             <td><?= $k->price ?></td>
+                            <td>
+                                <?php if ($k->status == 1): ?>
+                                    <span class="badge bg-success">AKTIF</span>
+                                <?php else: ?>
+                                    <span class="badge bg-danger">NON-AKTIF</span>
+                                <?php endif; ?>
+                            </td>
                             <!-- <td><?= $k->tahun ?></td>  -->
                             <td>
                                 <a href="<?= base_url('product/update/' . $k->id_product) ?>" class="btn btn-warning btn-sm">

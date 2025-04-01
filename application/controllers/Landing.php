@@ -29,6 +29,7 @@ class Landing extends CI_Controller
         $this->load->view('landing_page/index');
         $this->load->view('templates/footer_landingpage');
     }
+
     public function about()
     {
         @$data['title'] = 'About Us';
@@ -63,6 +64,9 @@ class Landing extends CI_Controller
 
         // $data['config'] = $this->Destination_model->get_config('config')->row();
 
+        // print_r($data);
+        // exit;
+
         $this->load->view('templates/header_landingpage', $data);
         $this->load->view('landing_page/product');
         $this->load->view('templates/footer_landingpage');
@@ -91,6 +95,43 @@ class Landing extends CI_Controller
         $this->load->view('landing_page/contact');
         $this->load->view('templates/footer_landingpage');
     }
+
+    public function process()
+    {
+        // Ambil data dari form
+        $id_product = $this->input->post('id');
+        $name = $this->input->post('name');
+        $price = $this->input->post('price');
+        $qty = $this->input->post('qty');
+        $customer_name = $this->input->post('customer_name');
+        $customer_phone = $this->input->post('customer_phone');
+        $total_price = $price * $qty;
+
+        // Data untuk disimpan ke database
+        $data = [
+            'id_product' => $id_product,
+            'name' => $name,
+            'price' => $price,
+            'qty' => $qty,
+            'customer_name' => $customer_name,
+            'customer_phone' => $customer_phone,
+            'total_price' => $total_price,
+            'created_at' => date('Y-m-d H:i:s')
+        ];
+
+        // Simpan ke database
+        // Simpan ke database
+        if ($this->General_model->insert_order($data)) {
+            // Mengembalikan response sukses dalam bentuk JSON
+            echo json_encode(['status' => 'success', 'message' => 'Pesanan berhasil ditambahkan']);
+        } else {
+            // Mengembalikan response error dalam bentuk JSON
+            echo json_encode(['status' => 'error', 'message' => 'Gagal menambahkan pesanan']);
+        }
+    }
+
+
+
 
     // public function armada()
     // {

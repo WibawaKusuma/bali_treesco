@@ -33,6 +33,9 @@ class Product extends CI_Controller
         $data['title'] = 'Create Product';
         $data['user'] = $this->db->get_where('m_user', ['email' => $this->session->userdata('email')])->row_array();
 
+        // print_r($data);
+        // exit;
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar_admin', $data);

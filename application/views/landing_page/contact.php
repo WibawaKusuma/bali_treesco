@@ -57,7 +57,7 @@
 
     </div>
 
-    <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="600">
+    <form action="contact_email.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="600">
       <div class="row gy-4">
 
         <div class="col-md-6">
@@ -90,3 +90,42 @@
   </div>
 
 </section><!-- /Contact Section -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $(".php-email-form").submit(function(e) {
+      e.preventDefault();
+
+      let name = $("input[name='name']").val().trim();
+      let email = $("input[name='email']").val().trim();
+      let subject = $("input[name='subject']").val().trim();
+      let message = $("textarea[name='message']").val().trim();
+
+      if (name === "" || email === "" || subject === "" || message === "") {
+        $(".error-message").text("All fields are required!").fadeIn();
+        return;
+      }
+
+      $(".loading").fadeIn();
+
+      $.ajax({
+        type: "POST",
+        url: "forms/contact.php",
+        data: $(this).serialize(),
+        success: function(response) {
+          $(".loading").fadeOut();
+          if (response.trim() === "success") {
+            $(".sent-message").fadeIn();
+            $(".php-email-form")[0].reset();
+          } else {
+            $(".error-message").text(response).fadeIn();
+          }
+        },
+        error: function() {
+          $(".loading").fadeOut();
+          $(".error-message").text("There was an error. Try again later.").fadeIn();
+        }
+      });
+    });
+  });
+</script>

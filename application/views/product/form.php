@@ -8,6 +8,8 @@
 
                 <!-- Input ID (Hidden) -->
                 <input type="hidden" name="p[id_product]" value="<?= !empty($product) ? $product->id_product : '' ?>">
+                <input type="hidden" name="p[id_user]" value="<?= $user['id_user'] ?>">
+
 
                 <!-- Input Nama -->
                 <div class="form-group row">
@@ -28,6 +30,15 @@
                         <input type="text" id="price" name="p[price]" value="<?= !empty($product) ? $product->price : '' ?>" class="form-control" required>
                     </div>
                 </div>
+                <?php if (!empty($product)) { ?>
+                    <div class="form-group row">
+                        <label for="stock" class="col-12 col-sm-2 col-form-label">Stok</label>
+                        <div class="col-12 col-sm-10">
+                            <input type="text" id="stock" name="p[stock]" value="<?= !empty($product) ? $product->stock : '' ?>" class="form-control" disabled>
+                        </div>
+                    </div>
+                <?php }  ?>
+
                 <div class="form-group row">
                     <label for="status" class="col-12 col-sm-2 col-form-label">Status</label>
                     <div class="col-12 col-sm-10">

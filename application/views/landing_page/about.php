@@ -3,15 +3,15 @@
 
 <!-- Section Title -->
 <div class="container section-title" data-aos="fade-up">
-  <h2>Tentang Kami<br></h2>
-  <p><span>Ketahui Lagi</span> <span class="description-title">Tentang Kami</span></p>
+  <!-- <h2>Tentang Kami<br></h2> -->
+  <p style="color: #198754;"><span class="description-title" style="color: #198754;">Tentang Kami</span></p>
 </div><!-- End Section Title -->
 
 <div class="container">
 
   <div class="row gy-4">
     <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
-      <img src="<?= base_url('assets/img/event/event-4.jpg') ?>" class="img-fluid mb-4" alt="">
+      <img src="<?= base_url('assets/img/profile/about.png') ?>" class="img-fluid mb-4" alt="">
       <!-- <div class="book-a-table">
         <h3>Book a Table</h3>
         <p>+1 5589 55488 55</p>
@@ -19,17 +19,17 @@
     </div>
     <div class="col-lg-5" data-aos="fade-up" data-aos-delay="250">
       <div class="content ps-0 ps-lg-5">
-        <p class="fst-italic">
+        <p class="">
           Bali Treesco adalah perusahaan inovatif yang berfokus pada produksi dan distribusi produk berbasis kelapa berkualitas tinggi,
           seperti gula kelapa dan bubuk santan, yang diproduksi secara lokal di Bali. Kami berkomitmen untuk menyediakan alternatif pemanis alami yang lebih sehat,
           khususnya untuk penderita diabetes, dengan mengutamakan kualitas dan keberlanjutan dalam setiap proses produksi.
         </p>
-        <p class="fst-italic">
+        <p class="">
           Kami bekerja sama dengan petani kelapa lokal untuk memastikan sumber daya yang kami gunakan bersifat etis dan ramah lingkungan.
           Proses produksi kami yang teliti, mulai dari pemanenan air nira hingga pengemasan produk akhir,
           menjamin bahwa setiap produk yang kami hasilkan memiliki standar kualitas yang tinggi dan manfaat kesehatan yang optimal.
         </p>
-        <p class="fst-italic">
+        <p class="">
           Bali Treesco bertujuan untuk menjadi pemimpin dalam pasar produk kelapa alami,
           memberikan pilihan yang lebih sehat dan berkelanjutan bagi konsumen di seluruh dunia,
           sambil mendukung ekonomi lokal dan menjaga keberlanjutan alam Bali.
@@ -60,8 +60,8 @@
 
 <section id="chefs" class="chefs section">
   <div class="container section-title" data-aos="fade-up">
-    <h2>Tim</h2>
-    <p><span>Tim</span> <span class="description-title">Kami<br></span></p>
+    <!-- <h2>Tim</h2> -->
+    <p style="color: #198754;"><span class="description-title" style="color: #198754;">Tim Kami<br></span></p>
   </div>
   <div class="container d-flex justify-content-center">
     <div class="row gy-4 justify-content-center">

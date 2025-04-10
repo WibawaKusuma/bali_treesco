@@ -43,7 +43,7 @@
 
             <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
-                <!-- <img src="<?= base_url('assets/img/logo.png') ?>" alt=""> -->
+                <img src="<?= base_url('assets/img/logo-bali-treeco-round.png') ?>" alt="">
                 <h1 class="sitename">Bali Treesco</h1>
                 <span>.</span>
             </a>
@@ -74,6 +74,7 @@
                         </ul>
                     </li> -->
                     <li><a href="<?= base_url('landing/contact') ?>">Contact</a></li>
+                    <li><a href=" <?= base_url('auth') ?>">Login</a></li>
                     <!-- <li><a href="<?= base_url('auth') ?>">Login<i class="bi-arrow-right-circle-fill"></i></a></li> -->
                 </ul>
                 <i class=" mobile-nav-toggle d-xl-none bi bi-list"></i>

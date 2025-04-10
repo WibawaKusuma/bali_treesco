@@ -32,8 +32,8 @@
 
 <!-- Section Title -->
 <div class="container section-title" data-aos="fade-up">
-  <h2>Produk Kami</h2>
-  <p><span>Cek</span> <span class="description-title">Produk Kami</span></p>
+  <!-- <h2>Produk Kami</h2> -->
+  <p style="color: #198754;"><span class="description-title" style="color: #198754;">Produk Kami</span></p>
 </div><!-- End Section Title -->
 
 <div class="container" style="margin-bottom: 10%;">
@@ -115,8 +115,8 @@
                 <img src="<?= base_url('assets/img/product/'  . $k->image) ?>" class="menu-img img-fluid" alt="">
               </a>
               <hr>
-              <h4><?= $k->name ?></h4>
-              <p class="ingredients"> <i><?= $k->description ?></i> </p>
+              <h5 style="font-family: calibri;"><?= $k->name ?></h5>
+              <p class="ingredients" style="font-size: small;"> <i><?= $k->description ?></i> </p>
               <p class="price"> Rp. <?= number_format($k->price, 0, ',', '.') ?> </p>
 
               <!-- Input untuk jumlah pesanan -->

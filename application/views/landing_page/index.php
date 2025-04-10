@@ -25,12 +25,16 @@
   <div class="container">
     <div class="row gy-4">
       <div class="col-lg-4 rounded-5" data-aos="fade-up" data-aos-delay="100">
-        <div class="why-box" style="background-color: #2e6b3e;">
-          <h3>Mengapa Memilih Bali Treesco?</h3>
-          <p>
+        <div class="why-box" style="background-color: #ffffff;">
+          <h3 style="color: #37373F;">Mengapa Memilih Bali Treesco?</h3>
+          <div class="text-center">
+            <img src="<?= base_url('assets/img/logo-bali-treeco-round.png') ?>" style="width: 50%;" alt="">
+          </div>
+
+          <!-- <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
             Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad corporis. Autem tempore quibusdam vel necessitatibus optio ad corporis. Autem tempore quibusdam vel necessitatibus optio ad corporis.
-          </p>
+          </p> -->
           <!-- <div class="text-center">
             <a href="#" class="more-btn"><span>Learn More</span> <i class="bi bi-chevron-right"></i></a>
           </div> -->
@@ -40,7 +44,6 @@
 
       <div class="col-lg-8 d-flex align-items-stretch">
         <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
-
           <div class="col-xl-4">
             <div class="icon-box d-flex flex-column justify-content-center align-items-center">
               <i class="bi bi-clipboard-data"></i>
@@ -399,13 +402,13 @@
 <!-- <section id="gallery" class="gallery section light-background"> -->
 
 <!-- Section Title -->
-<div class="container section-title" data-aos="fade-up" style="margin-top: 5%;">
-  <h2>Galeri</h2>
-  <p><span>Cek</span> <span class="description-title">Galeri Kami</span></p>
+<div class="container section-title" data-aos="fade-up" style="margin-top: 5%; padding-top: 0%; padding-bottom: 0% !important;">
+  <!-- <h2>Galeri</h2> -->
+  <p style="color: #198754;"><span class="description-title" style="color: #198754;">Galeri Kami</span></p>
 </div>
 
-<div class="container section" data-aos="fade-up" data-aos-delay="100">
 
+<div class="container section" data-aos="fade-up" data-aos-delay="100">
   <div class="swiper init-swiper">
     <script type="application/json" class="swiper-config">
       {

@@ -9,7 +9,7 @@
 <?php endif; ?>
 <div class="card">
     <div class="card-header text-right">
-        <a href="<?= base_url('product/create') ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+        <a href="<?= base_url('selling/create') ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -17,8 +17,11 @@
                 <thead class="thead-info">
                     <tr>
                         <th>No</th>
-                        <th>Nama</th>
-                        <th>Harga</th>
+                        <th>Nama Barang</th>
+                        <th>Nama Pembeli</th>
+                        <th>Jumlah Order</th>
+                        <th>Nomor Pembeli</th>
+                        <th>Tanggal Order</th>
                         <th>Status</th>
                         <!-- <th>Tahun</th>  -->
                         <th><i class="fa fa-gear"></i></th>
@@ -26,25 +29,24 @@
                 </thead>
                 <tbody>
                     <?php $no = 1 ?>
-                    <?php foreach ($product as $k): ?>
+                    <?php foreach ($selling as $k): ?>
                         <tr>
                             <td><?= $no++ ?></td>
                             <td><?= $k->name ?></td>
-                            <td><?= $k->price ?></td>
+                            <td><?= $k->customer_name ?></td>
+                            <td><?= $k->qty ?></td>
+                            <td><?= $k->customer_phone ?></td>
+                            <td><?= $k->created_at ?></td>
                             <td>
-                                <?php if ($k->status == 1): ?>
-                                    <span class="badge bg-success">AKTIF</span>
+                                <?php if ($k->name == 1): ?>
+                                    <span class="badge bg-success">sudah realisasi</span>
                                 <?php else: ?>
-                                    <span class="badge bg-danger">NON-AKTIF</span>
+                                    <span class="badge bg-danger">belum realisasi</span>
                                 <?php endif; ?>
                             </td>
-                            <!-- <td><?= $k->tahun ?></td>  -->
                             <td>
-                                <a href="<?= base_url('product/update/' . $k->id_product) ?>" class="btn btn-warning btn-sm">
-                                    <i class="fa fa-pen"></i>
-                                </a>
-                                <a href="<?= base_url('product/delete/' . $k->id_product) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this reservation?');">
-                                    <i class="fa fa-trash"></i>
+                                <a href="<?= base_url('selling/update/' . $k->id_selling) ?>" class="btn btn-info btn-sm">
+                                    <i class="fa-solid fa-rotate-right"></i> Proses
                                 </a>
                             </td>
 

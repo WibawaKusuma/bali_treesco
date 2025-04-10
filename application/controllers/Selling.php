@@ -17,7 +17,7 @@ class Selling extends CI_Controller
     public function index()
     {
         $data['title'] = 'Selling';
-        $data['selling'] = $this->General_model->get_data('m_selling')->result();
+        $data['selling'] = $this->General_model->get_data('tr_selling')->result();
 
         $data['user'] = $this->db->get_where('m_user', ['email' => $this->session->userdata('email')])->row_array();
 

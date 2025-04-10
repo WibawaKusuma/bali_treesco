@@ -8,8 +8,8 @@
                 <i class="bi bi-geo-alt icon"></i>
                 <div class="address">
                     <h4>Alamat</h4>
-                    <p><?= @$config['company_address'] ?></p>
-                    <p><?= @$config['company_city'] ?>, <?= @$config['company_province'] ?></p>
+                    <p><?= @$config['company_address'] ?>, <?= @$config['company_city'] ?>, <?= @$config['company_province'] ?></p>
+                    <!-- <p><?= @$config['company_city'] ?>, <?= @$config['company_province'] ?></p> -->
                     <p></p>
                 </div>
 

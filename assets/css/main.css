@@ -786,7 +786,7 @@ section,
   margin: 10px 0 0 0;
   font-size: 48px;
   font-weight: 500;
-  font-family: var(--heading-font);
+  font-family: 'Perpetua';
 }
 
 .section-title p .description-title {

@@ -1,15 +1,40 @@
+<style>
+    .footer {
+        background-color: #343a40;
+        color: white;
+        padding: 20px 0;
+    }
+
+    .footer a {
+        color: #f8f9fa;
+        text-decoration: none;
+    }
+
+    .footer a:hover {
+        text-decoration: underline;
+    }
+</style>
+
 </div><!-- /.container-fluid -->
 </div>
 <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-<footer class="main-footer text-right">
-    <!-- <div class="float-right d-none d-sm-block">
-        <b>Version</b> 3.0.5
-    </div> -->
+<!-- <footer class="main-footer text-right">
     <strong>Copyright &copy; 2024 <a href="#"> po.SYSTEM</a>.</strong> All rights
     reserved.
+</footer> -->
+<footer class="footer mt-auto py-3 bg-dark text-white">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <p class="mb-0">&copy; <?= date('Y') ?> <strong>po.SYSTEM</strong>. All rights reserved.</p>
+        <ul class="list-inline mb-0">
+            <li class="list-inline-item"><a class="text-white text-decoration-none" href="#">Privacy</a></li>
+            <li class="list-inline-item"><a class="text-white text-decoration-none" href="#">Terms</a></li>
+            <li class="list-inline-item"><a class="text-white text-decoration-none" href="#">Contact</a></li>
+        </ul>
+    </div>
 </footer>
+
 
 <!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-dark">

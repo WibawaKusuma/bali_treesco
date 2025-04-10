@@ -123,10 +123,16 @@ class Landing extends CI_Controller
         // Simpan ke database
         if ($this->General_model->insert_order($data)) {
             // Mengembalikan response sukses dalam bentuk JSON
-            echo json_encode(['status' => 'success', 'message' => 'Pesanan berhasil ditambahkan']);
+            echo json_encode([
+                'status' => 'success',
+                'message' => 'Pesanan berhasil ditambahkan!<br>Sebentar lagi admin kami akan menghubungi mu 😊'
+            ]);
         } else {
             // Mengembalikan response error dalam bentuk JSON
-            echo json_encode(['status' => 'error', 'message' => 'Gagal menambahkan pesanan']);
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Gagal menambahkan pesanan'
+            ]);
         }
     }
 

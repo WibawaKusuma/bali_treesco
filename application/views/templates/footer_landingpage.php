@@ -1,6 +1,6 @@
 </main>
 
-<footer id="footer" class="footer dark-background">
+<footer id="footer" class="footer" style="background-color: #f2f2f2;">
 
     <div class="container">
         <div class="row gy-3">

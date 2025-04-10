@@ -39,13 +39,19 @@ class Auth extends CI_Controller
             // Cek jika user aktif
             if ($user_detail['status'] == 1) {
                 // Cek password dengan password_verify
-                if ($user_detail['password']) {
+                // if ($user_detail['password']) {
+                if ($password == $user_detail['password']) {
                     $data = [
                         'id_user' => $user_detail['id_user'],
                         'email' => $user_detail['email'],
                         'name' => $user_detail['name'],
                     ];
                     $this->session->set_userdata($data);
+                    $this->session->set_flashdata('sweet_alert', json_encode([
+                        'type' => 'success',
+                        'title' => 'Login Berhasil!',
+                        'text' => 'Login Berhasil!'
+                    ]));
                     redirect('admin');
                 } else {
                     $this->session->set_flashdata('sweet_alert', json_encode([

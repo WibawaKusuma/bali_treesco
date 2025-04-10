@@ -43,7 +43,7 @@
                                 <a href="<?= base_url('product/update/' . $k->id_product) ?>" class="btn btn-warning btn-sm">
                                     <i class="fa fa-pen"></i>
                                 </a>
-                                <a href="<?= base_url('product/delete/' . $k->id_product) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this reservation?');">
+                                <a href="#" class="btn btn-danger btn-sm btn-delete" data-id="<?= $k->id_product ?>">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
@@ -59,6 +59,9 @@
 <!-- jQuery inclusion -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <!-- Script for the alert -->
 <script>
     // Set a timeout to hide the alert after 5 seconds
@@ -66,5 +69,24 @@
         setTimeout(function() {
             $('#success-alert').fadeOut('slow');
         }, 3000); // 5000 milliseconds = 5 seconds
+    });
+
+    $(document).on('click', '.btn-delete', function(e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+        Swal.fire({
+            title: 'Apakah kamu yakin?',
+            text: "Data ini akan dihapus secara permanen!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '<?= base_url("product/delete/") ?>' + id;
+            }
+        });
     });
 </script>

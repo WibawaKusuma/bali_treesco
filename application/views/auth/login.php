@@ -16,7 +16,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<div class="d-flex justify-content-center align-items-center min-vh-100" style="background-color: #1c5236;">
+<div class="d-flex justify-content-center align-items-center min-vh-100" style="background-color: #f2f2f2;">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-5">

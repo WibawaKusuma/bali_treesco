@@ -7,7 +7,6 @@
     background: #fff;
   }
 
-  /* HOVER HANYA UNTUK GAMBAR */
   .menu-img {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   }
@@ -19,16 +18,15 @@
 
   button {
     float: right;
+  }
 
+  .konfirmasi {
+    font-family: 'roboto';
   }
 </style>
 <!-- Load SweetAlert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
-<!-- Menu Section -->
-<!-- <section id="menu" class="menu section"> -->
 
 <!-- Section Title -->
 <div class="container section-title" data-aos="fade-up">
@@ -37,30 +35,6 @@
 </div><!-- End Section Title -->
 
 <div class="container" style="margin-bottom: 10%;">
-
-  <!-- <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
-    <li class="nav-item">
-      <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#menu-starters">
-        <h4>Starters</h4>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-breakfast">
-        <h4>Breakfast</h4>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-lunch">
-        <h4>Lunch</h4>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-dinner">
-        <h4>Dinner</h4>
-      </a>
-    </li>
-  </ul> -->
-
   <?php if ($this->session->flashdata('success')) : ?>
     <script>
       Swal.fire({
@@ -126,63 +100,25 @@
                 <input type="hidden" name="price" value="<?= $k->price ?>">
 
                 <!-- Input untuk menentukan jumlah -->
-                <input type="number" name="qty" id="qty" class="form-control text-center" placeholder="Qty" min="1" value="1" style="margin-right: 10px;">
+                <!-- <input type="number" name="qty" id="qty" class="form-control text-center" placeholder="Qty" min="1" value="1" style="margin-right: 10px;"> -->
+                <input type="number" name="qty" class="form-control text-center" placeholder="Qty" min="1" value="1" style="margin-right: 10px;">
+
 
                 <!-- Tombol Order -->
-                <button type="button" class="btn btn-sm btn-success order-btn" data-name="<?= $k->name ?>" data-price="<?= $k->price ?>" data-qty="1">
+                <button type="button" class="btn btn-sm btn-success order-btn"
+                  data-id="<?= $k->id_product ?>"
+                  data-name="<?= $k->name ?>"
+                  data-price="<?= $k->price ?>"
+                  data-qty="1">
                   Order
                 </button>
+
               </form>
             </div>
-
           <?php } ?>
         <?php endforeach; ?>
       </div>
     </div>
-
-
-    <!-- End Starter Menu Content -->
-
-    <!-- <div class="tab-pane fade" id="menu-breakfast">
-      <div class="tab-header text-center">
-        <p>Menu</p>
-        <h3>Breakfast</h3>
-      </div>
-      <div class="row gy-5">
-
-        <div class="col-lg-4 menu-item">
-          <a href="<?= base_url('assets/img/menu/menu-item-1.png') ?>" class="glightbox"><img src="<?= base_url('assets/img/menu/menu-item-1.png') ?>" class="menu-img img-fluid" alt=""></a>
-          <h4>Magnam Tiste</h4>
-          <p class="ingredients">
-            Lorem, deren, trataro, filede, nerada
-          </p>
-          <p class="price">
-            $5.95
-          </p>
-        </div>
-      </div>
-    </div> -->
-
-    <!-- <div class="tab-pane fade" id="menu-lunch">
-      <div class="tab-header text-center">
-        <p>Menu</p>
-        <h3>Lunch</h3>
-      </div>
-      <div class="row gy-5">
-
-        <div class="col-lg-4 menu-item">
-          <a href="<?= base_url('assets/img/menu/menu-item-1.png') ?>" class="glightbox"><img src="<?= base_url('assets/img/menu/menu-item-1.png') ?>" class="menu-img img-fluid" alt=""></a>
-          <h4>Magnam Tiste</h4>
-          <p class="ingredients">
-            Lorem, deren, trataro, filede, nerada
-          </p>
-          <p class="price">
-            $5.95
-          </p>
-        </div>
-      </div>
-    </div> -->
-
     <!-- <div class="tab-pane fade" id="menu-dinner">
       <div class="tab-header text-center">
         <p>Menu</p>
@@ -209,14 +145,36 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="confirmModalLabel">Konfirmasi Pembelian</h5>
+          <h5 class="konfirmasi" id="confirmModalLabel">Konfirmasi Pembelian</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p><strong>Nama Produk:</strong> <span id="productName"></span></p>
+          <table class="table table-bordered">
+            <tr>
+              <td>ID</td>
+              <td><span id="id_product"></span></td>
+            </tr>
+            <tr>
+              <td>Nama Produk</td>
+              <td><span id="productName"></span></td>
+            </tr>
+            <tr>
+              <td>Harga</td>
+              <td>Rp. <span id="productPrice"></span></td>
+            </tr>
+            <tr>
+              <td>Jumlah</td>
+              <td><span id="productQty"></span></td>
+            </tr>
+            <tr>
+              <td>Total Harga</td>
+              <td>Rp. <span id="totalPrice"></span></td>
+            </tr>
+          </table>
+          <!-- <p><strong>Nama Produk:</strong> <span id="productName"></span></p>
           <p><strong>Harga:</strong> Rp. <span id="productPrice"></span></p>
           <p><strong>Jumlah:</strong> <span id="productQty"></span></p>
-          <p><strong>Total Harga:</strong> Rp. <span id="totalPrice"></span></p>
+          <p><strong>Total Harga:</strong> Rp. <span id="totalPrice"></span></p> -->
 
           <!-- Input Nama dan Nomor HP -->
           <div class="mb-3">
@@ -247,7 +205,8 @@
     btn.addEventListener('click', function() {
       var productName = this.getAttribute('data-name');
       var productPrice = this.getAttribute('data-price');
-      var productQty = document.getElementById('qty').value;
+      // var productQty = document.getElementById('qty').value;
+      var productQty = this.closest('form').querySelector('input[name="qty"]').value;
       var totalPrice = productPrice * productQty;
 
       // Tampilkan data produk dan total harga di modal
@@ -293,13 +252,18 @@
           .then(data => {
             // Tampilkan SweetAlert sesuai dengan status respon
             if (data.status === 'success') {
+              // Swal.fire({
+              //   title: 'Success!',
+              //   text: data.message,
+              //   icon: 'success',
+              //   confirmButtonText: 'OK'
+              // })
               Swal.fire({
                 title: 'Success!',
-                text: data.message,
+                html: data.message, // Ganti jadi html:
                 icon: 'success',
                 confirmButtonText: 'OK'
-              }).then(function() {
-                // Arahkan ke halaman lain setelah konfirmasi
+              }).then(() => {
                 window.location.href = '<?= base_url('landing/product') ?>';
               });
             } else {

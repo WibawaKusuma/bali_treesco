@@ -27,6 +27,10 @@
     <!-- Main CSS File -->
     <link href="<?= base_url('assets/css/main.css') ?>" rel=" stylesheet">
 
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
     <!-- =======================================================
   * Template Name: Yummy
   * Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
@@ -50,7 +54,7 @@
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="<?= base_url('landing/index') ?>">Home<br></a></li>
+                    <li><a href="<?= base_url('landing') ?>">Home<br></a></li>
                     <li><a href="<?= base_url('landing/about') ?>">About</a></li>
                     <li><a href=" <?= base_url('landing/product') ?>">Product</a></li>
                     <!-- <li><a href="#events">Events</a></li> -->

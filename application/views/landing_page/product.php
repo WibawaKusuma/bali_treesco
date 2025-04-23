@@ -89,7 +89,7 @@
                 <img src="<?= base_url('assets/img/product/'  . $k->image) ?>" class="menu-img img-fluid" alt="">
               </a>
               <hr>
-              <h5 style="font-family: calibri;"><?= $k->name ?></h5>
+              <h5 style="font-family: calibri !important;"><?= $k->name ?></h5>
               <p class="ingredients" style="font-size: small;"> <i><?= $k->description ?></i> </p>
               <p class="price"> Rp. <?= number_format($k->price, 0, ',', '.') ?> </p>
 

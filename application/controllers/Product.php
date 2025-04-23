@@ -7,6 +7,8 @@ class Product extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        is_admin();
+
         $this->load->library('session');
 
         $this->load->model('Admin_model');

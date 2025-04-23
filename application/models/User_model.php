@@ -28,4 +28,15 @@ class User_model extends CI_Model
     {
         $this->db->update($table, $data);
     }
+
+    public function get_user_by_id($id)
+    {
+        return $this->db->get_where('m_user', ['id_user' => $id])->row_array(); // sesuaikan nama tabel & kolom
+    }
+
+    public function update_user($id, $data)
+    {
+        $this->db->where('id_user', $id);
+        return $this->db->update('m_user', $data);
+    }
 }

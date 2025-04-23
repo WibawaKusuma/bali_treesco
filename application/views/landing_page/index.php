@@ -25,7 +25,7 @@
   <div class="container">
     <div class="row gy-4">
       <div class="col-lg-4 rounded-5" data-aos="fade-up" data-aos-delay="100">
-        <div class="why-box" style="background-color: #ffffff;">
+        <div class="why-box text-center" style="background-color: #ffffff;">
           <h3 style="color: #37373F;">Mengapa Memilih Bali Treesco?</h3>
           <div class="text-center">
             <img src="<?= base_url('assets/img/logo-bali-treeco-round.png') ?>" style="width: 50%;" alt="">

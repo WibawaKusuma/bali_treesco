@@ -8,9 +8,9 @@
     </div>
 <?php endif; ?>
 <div class="card">
-    <div class="card-header text-right">
+    <!-- <div class="card-header text-right">
         <a href="<?= base_url('selling/create') ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
-    </div>
+    </div> -->
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-striped table-hover table-bordered text-center" id="example1">
@@ -38,17 +38,25 @@
                             <td><?= $k->customer_phone ?></td>
                             <td><?= $k->created_at ?></td>
                             <td>
-                                <?php if ($k->name == 1): ?>
+                                <?php if ($k->status == 1 && $k->batal == 0): ?>
                                     <span class="badge bg-success">sudah realisasi</span>
+                                <?php elseif ($k->status == 0 && $k->batal == 0): ?>
+                                    <span class="badge bg-warning text-white">belum realisasi</span>
                                 <?php else: ?>
-                                    <span class="badge bg-danger">belum realisasi</span>
+                                    <span class="badge bg-danger">order batal</span>
                                 <?php endif; ?>
                             </td>
+                            <!-- <td>
+                                <a href="<?= base_url('selling/update/' . $k->id_selling) ?>" class="btn btn-warning btn-sm">
+                                    <i class="fa fa-rotate-right"></i> Proses
+                                </a>
+                            </td> -->
                             <td>
-                                <a href="<?= base_url('selling/update/' . $k->id_selling) ?>" class="btn btn-info btn-sm">
-                                    <i class="fa-solid fa-rotate-right"></i> Proses
+                                <a href="<?= base_url('selling/update/' . $k->id_selling) ?>" class="btn btn-info btn-sm text-white">
+                                    <i class="fa fa-rotate-right"></i> Proses
                                 </a>
                             </td>
+
 
                         </tr>
                     <?php endforeach ?>

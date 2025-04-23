@@ -56,8 +56,10 @@
                     <!-- <h1 class="m-0 text-dark"><?= $title ?></h1> -->
                 </div><!-- /.col -->
                 <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right fs-7">
-                        <li class="breadcrumb-item"><a href="<?php echo base_url('admin') ?>">Home</a></li>
+                    <!-- <ol class="breadcrumb float-sm-right fs-7"> -->
+                    <ol class="breadcrumb float-sm-right" style="font-size: 0.875rem;">
+                        <!-- <li class="breadcrumb-item"><a href="<?php echo base_url('admin') ?>">Home</a></li> -->
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('admin') ?>" style="color: inherit; text-decoration: none;">Home</a></li>
                         <li class="breadcrumb-item active"><?= $title ?></li>
                     </ol>
                 </div>

@@ -6,8 +6,14 @@
     <title>Dashboard</title>
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
 
     <style>
+        p h1 h2 h3 h4 h5 {
+            font-family: 'Poppins', sans-serif !important;
+        }
+
         .icon {
             width: 80px;
             height: 80px;
@@ -55,7 +61,7 @@
             font-size: 18px;
             text-align: center;
             text-transform: capitalize;
-            font-weight: 600;
+            /* font-weight: 600; */
             color: #333;
         }
 

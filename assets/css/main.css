@@ -784,7 +784,7 @@ section,
 .section-title p {
   color: var(--heading-color);
   margin: 10px 0 0 0;
-  font-size: 48px;
+  font-size: 35px;
   font-weight: 500;
   font-family: 'Perpetua';
 }

@@ -1,7 +1,7 @@
 <div class="container" style="max-width: 1000px;">
     <div class="card shadow-lg">
         <div class="card-header bg-primary text-white text-center">
-            <h4 class="mb-0"><?= !empty($team) ? 'Edit Product' : 'Create Product' ?></h4>
+            <h4 class="mb-0"><?= !empty($team) ? 'Edit Team' : 'Create Team' ?></h4>
         </div>
         <div class="card-body">
             <form action="<?= !empty($team) ? base_url('team/update/' . $team->id_team) : base_url('team/create_team') ?>" method="post" enctype="multipart/form-data">

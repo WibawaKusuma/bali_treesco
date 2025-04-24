@@ -21,21 +21,49 @@ class Admin extends CI_Controller
         $this->load->model('Vote_model');
     }
 
+    // public function index()
+    // {
+    //     $data['module'] = $this->Admin_model->get_acaravote('m_module')->result();
+    //     $data['title'] = 'Admin';
+    //     $data['user'] = $this->db->get_where('m_user', ['email' => $this->session->userdata('email')])->row_array();
+
+    //     // print_r($data);
+    //     // exit;
+
+    //     $this->load->view('templates/header', $data);
+    //     $this->load->view('templates/topbar', $data);
+    //     $this->load->view('templates/sidebar_admin', $data);
+    //     $this->load->view('admin/dashboard');
+    //     $this->load->view('templates/footer');
+    // }
     public function index()
     {
-        $data['module'] = $this->Admin_model->get_acaravote('m_module')->result();
-        $data['title'] = 'Admin';
+        // Ambil ID user dari session
+        $user_id = $this->session->userdata('id_user');
+
+        // Ambil module yang bisa diakses oleh user ini
+        $this->db->select('m_module.*');
+        $this->db->from('m_role_permissions');
+        $this->db->join('m_module', 'm_module.id_module = m_role_permissions.id_module');
+        $this->db->where('m_role_permissions.id_user', $user_id);
+        $this->db->where('m_module.status', 1); // Pastikan hanya module dengan status aktif yang ditampilkan
+        $query = $this->db->get();
+        $data['module'] = $query->result(); // Ambil hasil query dan simpan di $data['module']
+
+        // Ambil data user berdasarkan email yang ada di session
         $data['user'] = $this->db->get_where('m_user', ['email' => $this->session->userdata('email')])->row_array();
 
-        // print_r($data);
-        // exit;
+        // Data untuk title halaman
+        $data['title'] = 'Admin';
 
+        // Load view dengan data yang sudah disiapkan
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar_admin', $data);
-        $this->load->view('admin/dashboard');
+        $this->load->view('admin/dashboard', $data);
         $this->load->view('templates/footer');
     }
+
 
     public function update_password()
     {

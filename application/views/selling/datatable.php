@@ -53,7 +53,8 @@
                             </td> -->
                             <td>
                                 <a href="<?= base_url('selling/update/' . $k->id_selling) ?>" class="btn btn-info btn-sm text-white">
-                                    <i class="fa fa-rotate-right"></i> Proses
+                                    <!-- <i class="fa fa-rotate-right"></i> -->
+                                    proses
                                 </a>
                             </td>
 

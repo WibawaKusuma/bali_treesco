@@ -39,4 +39,29 @@ class User_model extends CI_Model
         $this->db->where('id_user', $id);
         return $this->db->update('m_user', $data);
     }
+
+    // Fungsi untuk mengupdate data user
+    public function update_data($id_user, $data)
+    {
+        // Pastikan ID user ada
+        if (empty($id_user) || empty($data)) {
+            return false; // Jika tidak ada data atau ID user
+        }
+
+        // Hash password jika ada perubahan password
+        if (!empty($data['password'])) {
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        } else {
+            unset($data['password']); // Jangan update password jika kosong
+        }
+
+        // Tambahkan timestamp updated_at
+        $data['updated_at'] = date('Y-m-d H:i:s');
+
+        // Update data di tabel m_user berdasarkan ID user
+        $this->db->where('id_user', $id_user);
+        $update = $this->db->update('m_user', $data);
+
+        return $update;
+    }
 }

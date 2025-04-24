@@ -28,6 +28,7 @@ class Auth extends CI_Controller
         }
     }
 
+
     // private function _login()
     // {
     //     $email = $this->input->post('email', true); // Menghindari XSS
@@ -88,15 +89,13 @@ class Auth extends CI_Controller
 
         // Memanggil fungsi get_by_email dari model User_model untuk mendapatkan data user
         $user_detail = $this->General_model->get_by_email($email);
-        // print_r($user_detail);
-        // exit;
 
         // Cek jika user ada
         if ($user_detail) {
             // Cek jika user aktif
             if ($user_detail['status'] == 1) {
                 // Cek password dengan password_verify
-                if ($password == $user_detail['password']) {
+                if (password_verify($password, $user_detail['password'])) {
                     // Menyimpan data session termasuk role_name
                     $this->session->set_userdata([
                         'id_user' => $user_detail['id_user'],
@@ -137,6 +136,7 @@ class Auth extends CI_Controller
             redirect('auth');
         }
     }
+
 
 
     private function _set_error($msg)

@@ -8,7 +8,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-
     <style>
         p h1 h2 h3 h4 h5 {
             font-family: 'Poppins', sans-serif !important;
@@ -61,7 +60,6 @@
             font-size: 18px;
             text-align: center;
             text-transform: capitalize;
-            /* font-weight: 600; */
             color: #333;
         }
 
@@ -89,20 +87,18 @@
     <div class="row justify-content-center">
         <div class="row" style="width: 80%;">
             <?php foreach ($module as $k) : ?>
-                <?php if ($k->status == 1) : ?>
-                    <div class="col-sm-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <a href="<?= base_url($k->url) ?>" class="module-link d-flex align-items-center flex-column" title="<?= $k->name ?>">
-                                    <div class="icon-container">
-                                        <i class="<?= $k->icon ?> icon"></i>
-                                    </div>
-                                    <h5><?= $k->name ?></h5>
-                                </a>
-                            </div>
+                <div class="col-sm-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="<?= base_url($k->url) ?>" class="module-link d-flex align-items-center flex-column" title="<?= $k->name ?>">
+                                <div class="icon-container">
+                                    <i class="<?= $k->icon ?> icon"></i>
+                                </div>
+                                <h5><?= $k->name ?></h5>
+                            </a>
                         </div>
                     </div>
-                <?php endif; ?>
+                </div>
             <?php endforeach; ?>
         </div>
     </div>

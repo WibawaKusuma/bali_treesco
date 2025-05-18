@@ -31,6 +31,15 @@
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <style>
+        .cart-count {
+            position: relative;
+            top: -8px;
+            font-size: 10px;
+            margin-left: -5px;
+        }
+    </style>
+
 
     <!-- =======================================================
   * Template Name: Yummy
@@ -43,6 +52,63 @@
         * {
             font-family: 'Poppins', sans-serif !important;
         }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .main {
+            flex: 1 0 auto;
+        }
+
+        .footer {
+            flex-shrink: 0;
+            margin-top: auto;
+        }
+
+        /* Responsif dropdown menu */
+        @media (max-width: 1279px) {
+            .navmenu .dropdown-menu {
+                position: static;
+                left: 0;
+                right: 0;
+                top: 100%;
+                margin: 0;
+                padding: 10px 0;
+                z-index: 99;
+                opacity: 1;
+                visibility: hidden;
+                background: #fff;
+                box-shadow: none;
+                transition: all 0.3s ease;
+                display: none;
+            }
+
+            .navmenu .dropdown-menu.dropdown-active {
+                display: block;
+                visibility: visible;
+                opacity: 1;
+                margin-top: 8px;
+                margin-bottom: 8px;
+                padding-left: 15px;
+            }
+
+            .mobile-nav-active .navmenu ul {
+                display: block;
+            }
+
+            .mobile-nav-active .navmenu ul li {
+                position: relative;
+            }
+        }
     </style>
 </head>
 
@@ -52,7 +118,6 @@
         <div class="container position-relative d-flex align-items-center justify-content-between">
 
             <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-                <!-- Uncomment the line below if you also wish to use an image logo -->
                 <img src="<?= base_url('assets/img/logo-bali-treeco-round.png') ?>" alt="">
                 <h1 class="sitename">Bali Treesco</h1>
                 <span>.</span>
@@ -63,29 +128,31 @@
                     <li><a href="<?= base_url('landing') ?>">Home<br></a></li>
                     <li><a href="<?= base_url('landing/about') ?>">About</a></li>
                     <li><a href=" <?= base_url('landing/product') ?>">Product</a></li>
-                    <!-- <li><a href="#events">Events</a></li> -->
-                    <!-- <li><a href="#chefs">Chefs</a></li>
-                    <li><a href="#gallery">Gallery</a></li> -->
-                    <!-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                        <ul>
-                            <li><a href="#">Dropdown 1</a></li>
-                            <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                                <ul>
-                                    <li><a href="#">Deep Dropdown 1</a></li>
-                                    <li><a href="#">Deep Dropdown 2</a></li>
-                                    <li><a href="#">Deep Dropdown 3</a></li>
-                                    <li><a href="#">Deep Dropdown 4</a></li>
-                                    <li><a href="#">Deep Dropdown 5</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Dropdown 2</a></li>
-                            <li><a href="#">Dropdown 3</a></li>
-                            <li><a href="#">Dropdown 4</a></li>
-                        </ul>
-                    </li> -->
                     <li><a href="<?= base_url('landing/contact') ?>">Contact</a></li>
-                    <li><a href=" <?= base_url('auth') ?>">Login</a></li>
-                    <!-- <li><a href="<?= base_url('auth') ?>">Login<i class="bi-arrow-right-circle-fill"></i></a></li> -->
+                    <?php if (!$this->session->userdata('customer_logged_in')) : ?>
+                        <li><a href="<?= base_url('customer/login') ?>">Login</a></li>
+                    <?php endif; ?>
+                    <?php if ($this->session->userdata('customer_logged_in')) : ?>
+                        <li>
+                            <a href="<?= base_url('cart') ?>">
+                                <!-- <i class="bi bi-cart"></i>  -->
+                                Chart
+                                <span class="cart-count badge bg-danger rounded-pill" id="cart-count">0</span>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">
+                                <!-- <i class="bi bi-person-circle"></i>  -->
+                                <span><?= $this->session->userdata('customer_name') ?></span>
+                                <i class="bi bi-chevron-down toggle-dropdown"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="<?= base_url('customer/profile') ?>"><i class="bi bi-person me-2"></i>My Profile</a></li>
+                                <li><a href="<?= base_url('order') ?>"><i class="bi bi-bag-check me-2"></i>My Order</a></li>
+                                <li><a href="<?= base_url('customer/logout') ?>"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                            </ul>
+                        </li>
+                    <?php endif; ?>
                 </ul>
                 <i class=" mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>

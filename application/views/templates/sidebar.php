@@ -2,8 +2,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
-        <img src="<?= base_url('assets/template/') ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">vote app</span>
+        <img src="<?= base_url('assets/img/') ?>logo-bali-treeco-round.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">Bali Treesco</span>
     </a>
 
     <!-- Sidebar -->
@@ -33,6 +33,35 @@
                         <p>User</p>
                     </a>
                 </li> -->
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-chart-bar"></i>
+                        <p>
+                            Laporan
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('report') ?>" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Dashboard Laporan</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('report/income') ?>" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Laporan Pendapatan</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('report/customer') ?>" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Laporan Customer</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-item">
                     <a href="<?= base_url('auth/logout') ?>" class="nav-link">
                         <i class="nav-icon fas fa-fw fa-sign-out-alt"></i>
@@ -56,11 +85,15 @@
                     <!-- <h1 class="m-0 text-dark"><?= $title ?></h1> -->
                 </div><!-- /.col -->
                 <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item small"><a href="dashboard">Home</a></li>
-                        <li class="breadcrumb-item active small"><?= @$title ?></li>
+                    <!-- <ol class="breadcrumb float-sm-right fs-7"> -->
+                    <ol class="breadcrumb float-sm-right" style="font-size: 0.875rem;">
+                        <!-- <li class="breadcrumb-item"><a href="<?php echo base_url('admin') ?>">Home</a></li> -->
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('admin') ?>" style="color: inherit; text-decoration: none;">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('report') ?>" style="color: inherit; text-decoration: none;">Laporan</a></li>
+                        <li class="breadcrumb-item active"><?= $title ?></li>
                     </ol>
-                </div><!-- /.col -->
+                </div>
+                <!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>

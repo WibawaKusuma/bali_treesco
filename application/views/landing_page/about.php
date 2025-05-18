@@ -1,3 +1,49 @@
+<style>
+  .team-member .social i {
+    font-size: 20px;
+    margin: 0 5px;
+  }
+
+  @media (max-width: 576px) {
+    .team-member {
+      font-size: 14px;
+    }
+
+    .team-member img {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    .team-member .member-info h4 {
+      font-size: 16px;
+    }
+
+    .team-member .member-info span {
+      font-size: 13px;
+    }
+
+    .team-member .social {
+      margin-top: 5px;
+    }
+
+    .team-member .social i {
+      font-size: 10px !important;
+      margin: 0 3px !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .team-member {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+  }
+</style>
+
+
+
 <!-- About Section -->
 <!-- <section id="about" class="about section"> -->
 
@@ -69,7 +115,8 @@
 
       <?php foreach (@$team as $k) : ?>
         <?php if ($k->status == 1) { ?>
-          <div class="col-lg-2 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+          <!-- <div class="col-lg-2 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100"> -->
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex align-items-stretch">
             <div class="team-member">
               <div class="member-img">
                 <img src="<?= base_url('assets/img/team/' . $k->image) ?>" class="img-fluid" alt="">

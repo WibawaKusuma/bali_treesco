@@ -1,0 +1,314 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+// Import PHPMailer classes
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+
+class Landing extends CI_Controller
+{
+    public function __construct()
+    {
+        parent::__construct();
+        // $this->load->model('Destination_model');
+        $this->load->model('Admin_model');
+        $this->load->model('General_model');
+        $this->load->library('form_validation');
+        $this->load->helper('form');
+        $this->load->helper('url');
+    }
+
+    public function index()
+    {
+        @$data['title'] = 'Home';
+        $data['galery'] = $this->General_model->get_data('m_galery')->result();
+        // $data['config'] = $this->Destination_model->get_config('config')->row();
+        $config_data = $this->General_model->get_config('config')->result();
+
+        $config_array = [];
+        foreach ($config_data as $item) {
+            $config_array[$item->name] = $item->value;
+        }
+
+        $data['config'] = $config_array;
+
+        $this->load->view('templates/header_landingpage', $data);
+        $this->load->view('landing_page/index');
+        $this->load->view('templates/footer_landingpage');
+    }
+
+    public function about()
+    {
+        @$data['title'] = 'About Us';
+        $data['team'] = $this->General_model->get_data('m_team')->result();
+        // $data['config'] = $this->Destination_model->get_config('config')->row();
+        $config_data = $this->General_model->get_config('config')->result();
+
+        $config_array = [];
+        foreach ($config_data as $item) {
+            $config_array[$item->name] = $item->value;
+        }
+
+        $data['config'] = $config_array;
+
+        $this->load->view('templates/header_landingpage', $data);
+        $this->load->view('landing_page/about');
+        $this->load->view('templates/footer_landingpage');
+    }
+
+    public function product()
+    {
+        $data['title'] = 'Product';
+        $data['detail'] = $this->Admin_model->get_acaravote('m_product')->result();
+        $config_data = $this->General_model->get_config('config')->result();
+
+        $config_array = [];
+        foreach ($config_data as $item) {
+            $config_array[$item->name] = $item->value;
+        }
+
+        $data['config'] = $config_array;
+
+        // $data['config'] = $this->Destination_model->get_config('config')->row();
+
+        // print_r($data);
+        // exit;
+
+        $this->load->view('templates/header_landingpage', $data);
+        $this->load->view('landing_page/product');
+        $this->load->view('templates/footer_landingpage');
+    }
+
+    public function contact()
+    {
+        $data['title'] = 'Contact';
+        // Ambil data dari tabel `config`
+        $config_data = $this->General_model->get_config('config')->result();
+
+        // Konversi array objek menjadi array asosiatif
+        $config_array = [];
+        foreach ($config_data as $item) {
+            $config_array[$item->name] = $item->value;
+        }
+
+        // Simpan ke dalam $data['config']
+        $data['config'] = $config_array;
+
+        // print_r($data);
+        // exit;
+
+
+        $this->load->view('templates/header_landingpage', $data);
+        $this->load->view('landing_page/contact');
+        $this->load->view('templates/footer_landingpage');
+    }
+
+    public function process()
+    {
+        // Ambil data dari form
+        $id_product = $this->input->post('id');
+        $name = $this->input->post('name');
+        $price = $this->input->post('price');
+        $qty = $this->input->post('qty');
+        $customer_name = $this->input->post('customer_name');
+        $customer_phone = $this->input->post('customer_phone');
+        $total_price = $price * $qty;
+
+        // Data untuk disimpan ke database
+        $data = [
+            'id_product' => $id_product,
+            'name' => $name,
+            'price' => $price,
+            'qty' => $qty,
+            'customer_name' => $customer_name,
+            'customer_phone' => $customer_phone,
+            'total_price' => $total_price,
+            'created_at' => date('Y-m-d H:i:s')
+        ];
+
+        // Simpan ke database
+        if ($this->General_model->insert_order($data)) {
+            // Mengembalikan response sukses dalam bentuk JSON
+            echo json_encode([
+                'status' => 'success',
+                'message' => 'Pesanan berhasil ditambahkan!<br>Sebentar lagi admin kami akan menghubungi mu 😊'
+            ]);
+        } else {
+            // Mengembalikan response error dalam bentuk JSON
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Gagal menambahkan pesanan'
+            ]);
+        }
+    }
+
+    public function send_feedback()
+    {
+        // Ambil data dari form
+        $name = isset($_POST['name']) ? $_POST['name'] : '';
+        $email = isset($_POST['email']) ? $_POST['email'] : '';
+        $subject = isset($_POST['subject']) ? $_POST['subject'] : '';
+        $message = isset($_POST['message']) ? $_POST['message'] : '';
+
+        // Validasi input sederhana
+        if (empty($name) || empty($email) || empty($subject) || empty($message)) {
+            echo "error";
+            return;
+        }
+
+        // Validasi email sederhana
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "error";
+            return;
+        }
+
+        // Email tujuan (admin)
+        $admin_email = 'info.balitreesco@gmail.com'; // Email admin yang sama dengan SMTP
+
+        // Load PHPMailer
+        require_once FCPATH . 'vendor/autoload.php';
+        
+        // Kirim email ke admin
+        try {
+            // Inisialisasi PHPMailer
+            $mail = new PHPMailer(true);
+            
+            // Konfigurasi server
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'info.balitreesco@gmail.com'; // Email Gmail Anda
+            $mail->Password = 'abcd efgh ijkl mnop';       // Ganti dengan App Password dari Google
+            $mail->SMTPSecure = 'ssl';                // Menggunakan SSL
+            $mail->Port = 465;                        // Port untuk SSL
+            $mail->CharSet = 'UTF-8';
+            $mail->SMTPDebug = 2;                     // Mode debug untuk melihat pesan error
+            
+            // Opsi tambahan untuk mengatasi masalah SSL
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                )
+            );
+            
+            // Pengirim dan penerima
+            $mail->setFrom('info.balitreesco@gmail.com', 'Bali Treesco Website');
+            $mail->addAddress($admin_email);
+            $mail->addReplyTo($email, $name);
+            
+            // Konten email
+            $mail->isHTML(true);
+            $mail->Subject = 'Feedback dari Website: ' . $subject;
+            
+            // Buat isi email untuk admin
+            $email_content = "
+            <html>
+            <head>
+                <title>Feedback dari Website</title>
+            </head>
+            <body>
+                <h2>Feedback Baru dari Website</h2>
+                <p><strong>Nama:</strong> $name</p>
+                <p><strong>Email:</strong> $email</p>
+                <p><strong>Subjek:</strong> $subject</p>
+                <p><strong>Pesan:</strong></p>
+                <p>$message</p>
+                <hr>
+                <p><small>Pesan ini dikirim dari form kontak website Bali Treesco.</small></p>
+            </body>
+            </html>
+            ";
+            
+            $mail->Body = $email_content;
+            
+            // Kirim email ke admin
+            $admin_email_sent = $mail->send();
+            
+            // Kirim email konfirmasi ke customer
+            $mail = new PHPMailer(true);
+            
+            // Konfigurasi server untuk email customer
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'info.balitreesco@gmail.com'; // Email Gmail Anda
+            $mail->Password = 'abcd efgh ijkl mnop';       // Ganti dengan App Password dari Google
+            $mail->SMTPSecure = 'ssl';                // Menggunakan SSL
+            $mail->Port = 465;                        // Port untuk SSL
+            $mail->CharSet = 'UTF-8';
+            $mail->SMTPDebug = 0;                     // Mode debug dimatikan untuk email customer
+            
+            // Opsi tambahan untuk mengatasi masalah SSL
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                )
+            );
+            
+            // Pengirim dan penerima untuk email customer
+            $mail->setFrom('info.balitreesco@gmail.com', 'Bali Treesco');
+            $mail->addAddress($email, $name);
+            
+            // Konten email untuk customer
+            $mail->isHTML(true);
+            $mail->Subject = 'Terima Kasih atas Feedback Anda';
+            
+            // Buat isi email untuk customer
+            $customer_email_content = "
+            <html>
+            <head>
+                <title>Terima Kasih atas Feedback Anda</title>
+            </head>
+            <body>
+                <h2>Terima Kasih, $name!</h2>
+                <p>Kami telah menerima feedback Anda dengan subjek: <strong>$subject</strong></p>
+                <p>Pesan Anda:</p>
+                <p><em>$message</em></p>
+                <p>Kami sangat menghargai masukan Anda dan akan segera meninjau pesan ini. Jika diperlukan, tim kami akan menghubungi Anda dalam waktu 1-2 hari kerja.</p>
+                <hr>
+                <p>Salam hangat,</p>
+                <p><strong>Tim Bali Treesco</strong></p>
+                <p>Website: <a href='https://balitreesco.com'>balitreesco.com</a></p>
+                <p>Email: $admin_email</p>
+                <p><small>Ini adalah email otomatis, mohon jangan membalas email ini.</small></p>
+            </body>
+            </html>
+            ";
+            
+            $mail->Body = $customer_email_content;
+            
+            // Kirim email ke customer
+            $customer_email_sent = $mail->send();
+            
+            // Cek hasil pengiriman
+            if ($admin_email_sent && $customer_email_sent) {
+                echo "success";
+            } else {
+                echo "error";
+            }
+            
+        } catch (Exception $e) {
+            // Tampilkan pesan error untuk debugging
+            echo "Error: " . $e->getMessage();
+            // echo "error";
+        }
+    }
+
+
+    // public function armada()
+    // {
+    //     $data['title'] = 'Armada';
+    //     $data['armada'] = $this->Armada_model->get_armada('marmada')->result();
+    //     $data['config'] = $this->Destination_model->get_config('config')->row();
+
+
+    //     $this->load->view('templates/header_landingpage', $data);
+    //     $this->load->view('landing_page/armada', $data);
+    //     $this->load->view('templates/footer_landingpage');
+    // }
+}

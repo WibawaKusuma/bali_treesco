@@ -59,31 +59,31 @@
 
     </div>
 
-    <form action="contact_email.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="600">
+    <form id="feedbackForm" class="php-email-form" data-aos="fade-up" data-aos-delay="600">
       <div class="row gy-4">
 
         <div class="col-md-6">
-          <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+          <input type="text" name="name" class="form-control" placeholder="Nama Anda" required="">
         </div>
 
         <div class="col-md-6 ">
-          <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+          <input type="email" class="form-control" name="email" placeholder="Email Anda" required="">
         </div>
 
         <div class="col-md-12">
-          <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+          <input type="text" class="form-control" name="subject" placeholder="Subjek" required="">
         </div>
 
         <div class="col-md-12">
-          <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+          <textarea class="form-control" name="message" rows="6" placeholder="Pesan" required=""></textarea>
         </div>
 
         <div class="col-md-12 text-center">
           <div class="loading">Loading</div>
           <div class="error-message"></div>
-          <div class="sent-message">Your message has been sent. Thank you!</div>
+          <div class="sent-message">Pesan Anda telah terkirim. Terima kasih!</div>
 
-          <button type="submit">Send Message</button>
+          <button type="submit">Kirim Pesan</button>
         </div>
 
       </div>
@@ -95,7 +95,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   $(document).ready(function() {
-    $(".php-email-form").submit(function(e) {
+    $("#feedbackForm").submit(function(e) {
       e.preventDefault();
 
       let name = $("input[name='name']").val().trim();
@@ -104,28 +104,34 @@
       let message = $("textarea[name='message']").val().trim();
 
       if (name === "" || email === "" || subject === "" || message === "") {
-        $(".error-message").text("All fields are required!").fadeIn();
+        $(".error-message").text("Semua kolom harus diisi!").fadeIn();
         return;
       }
 
       $(".loading").fadeIn();
+      $(".error-message").hide();
+      $(".sent-message").hide();
 
       $.ajax({
         type: "POST",
-        url: "forms/contact.php",
+        url: "<?= base_url('landing/send_feedback') ?>",
         data: $(this).serialize(),
         success: function(response) {
           $(".loading").fadeOut();
-          if (response.trim() === "success") {
+          console.log("Response:", response); // Log respons untuk debugging
+
+          // Periksa apakah respons mengandung "success" (bukan hanya sama persis)
+          if (response.includes("success")) {
             $(".sent-message").fadeIn();
-            $(".php-email-form")[0].reset();
+            $("#feedbackForm")[0].reset();
           } else {
-            $(".error-message").text(response).fadeIn();
+            $(".error-message").text("Terjadi kesalahan saat mengirim pesan. Silakan coba lagi.").fadeIn();
           }
         },
-        error: function() {
+        error: function(xhr, status, error) {
           $(".loading").fadeOut();
-          $(".error-message").text("There was an error. Try again later.").fadeIn();
+          console.log("Error:", xhr.responseText); // Log error untuk debugging
+          $(".error-message").text("Terjadi kesalahan. Silakan coba lagi nanti.").fadeIn();
         }
       });
     });

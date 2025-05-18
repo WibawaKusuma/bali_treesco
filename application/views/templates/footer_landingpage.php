@@ -44,7 +44,7 @@
                     <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
                     <a href="https://www.instagram.com/balitreesco/" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
                     <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                    <a href="<?= base_url('auth') ?>"><i class="bi bi-arrow-right-circle-fill"></i></a>
+                    <a href="<?= base_url('auth') ?>" title="Admin Login"><i class="bi bi-person-lock"></i></a>
                 </div>
             </div>
 
@@ -81,6 +81,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        // Aktifkan menu berdasarkan URL saat ini
         let currentUrl = window.location.pathname; // Mendapatkan path URL
         let menuItems = document.querySelectorAll(".navmenu ul li a");
 
@@ -88,6 +89,21 @@
             if (item.href.includes(currentUrl)) {
                 item.classList.add("active");
             }
+        });
+
+        // Tangani dropdown menu pada tampilan mobile
+        document.querySelectorAll('.toggle-dropdown').forEach(function(toggle) {
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                // Dapatkan parent li dan dropdown menu
+                const parentLi = this.closest('.dropdown');
+                const dropdownMenu = parentLi.querySelector('.dropdown-menu');
+
+                // Toggle class dropdown-active
+                dropdownMenu.classList.toggle('dropdown-active');
+            });
         });
     });
 </script>
@@ -103,6 +119,36 @@
 
 <!-- Main JS File -->
 <script src="<?= base_url('assets/js/main.js') ?>"></script>
+
+<?php if ($this->session->userdata('customer_logged_in')) : ?>
+    <!-- Script untuk mengupdate jumlah item di keranjang -->
+    <script>
+        // Fungsi untuk mengupdate jumlah item di keranjang
+        function updateCartCount() {
+            fetch('<?= base_url('cart/count_items') ?>')
+                .then(response => response.json())
+                .then(data => {
+                    const cartCountElement = document.getElementById('cart-count');
+                    if (cartCountElement) {
+                        cartCountElement.textContent = data.count;
+
+                        // Sembunyikan badge jika jumlah item 0
+                        if (data.count === 0) {
+                            cartCountElement.style.display = 'none';
+                        } else {
+                            cartCountElement.style.display = 'inline-block';
+                        }
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Panggil fungsi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+        });
+    </script>
+<?php endif; ?>
 
 </body>
 

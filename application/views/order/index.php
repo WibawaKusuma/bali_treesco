@@ -57,7 +57,7 @@
     }
 </style>
 
-<div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+<div class="container" style="margin-top: 50px; margin-bottom: 50px; height: 100vh;">
     <h2>Pesanan Saya</h2>
 
     <?php if ($this->session->flashdata('success')) : ?>

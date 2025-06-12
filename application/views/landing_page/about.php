@@ -39,7 +39,16 @@
       flex: 1 1 100%;
       max-width: 100%;
     }
+
+    .section-title p {
+      margin-bottom: 30px !important;
+      font-size: 24px;
+    }
   }
+
+  /* .section-title {
+    margin-bottom: 100px !important;
+  } */
 </style>
 
 
@@ -48,64 +57,42 @@
 <!-- <section id="about" class="about section"> -->
 
 <!-- Section Title -->
-<div class="container section-title" data-aos="fade-up">
-  <!-- <h2>Tentang Kami<br></h2> -->
+<div class="container section-title" data-aos="fade-up" style="margin-top: 3%; padding-top: 0%; margin-bottom: 3% !important;">
   <p style="color: #198754;"><span class="description-title" style="color: #198754;">Tentang Kami</span></p>
-</div><!-- End Section Title -->
+</div>
 
 <div class="container">
-
   <div class="row gy-4">
-    <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
-      <img src="<?= base_url('assets/img/profile/about.png') ?>" class="img-fluid mb-4" alt="">
-      <!-- <div class="book-a-table">
-        <h3>Book a Table</h3>
-        <p>+1 5589 55488 55</p>
-      </div> -->
+    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+      <img src="<?= base_url('assets/img/profile/about.png') ?>" class="img-fluid mb-4" alt="" style="border-radius: 5%;">
     </div>
-    <div class="col-lg-5" data-aos="fade-up" data-aos-delay="250">
-      <div class="content ps-0 ps-lg-5">
-        <p class="">
+    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="250">
+      <div class="content py-1 py-lg-1">
+        <p class="" style="color: black;">
           Bali Treesco adalah perusahaan inovatif yang berfokus pada produksi dan distribusi produk berbasis kelapa berkualitas tinggi,
           seperti gula kelapa dan bubuk santan, yang diproduksi secara lokal di Bali. Kami berkomitmen untuk menyediakan alternatif pemanis alami yang lebih sehat,
           khususnya untuk penderita diabetes, dengan mengutamakan kualitas dan keberlanjutan dalam setiap proses produksi.
         </p>
-        <p class="">
+        <p class="" style="color: black;">
           Kami bekerja sama dengan petani kelapa lokal untuk memastikan sumber daya yang kami gunakan bersifat etis dan ramah lingkungan.
           Proses produksi kami yang teliti, mulai dari pemanenan air nira hingga pengemasan produk akhir,
           menjamin bahwa setiap produk yang kami hasilkan memiliki standar kualitas yang tinggi dan manfaat kesehatan yang optimal.
         </p>
-        <p class="">
+        <p class="" style="color: black;">
           Bali Treesco bertujuan untuk menjadi pemimpin dalam pasar produk kelapa alami,
           memberikan pilihan yang lebih sehat dan berkelanjutan bagi konsumen di seluruh dunia,
           sambil mendukung ekonomi lokal dan menjaga keberlanjutan alam Bali.
         </p>
-        <!-- <ul>
-                <li><i class="bi bi-check-circle-fill"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
-                <li><i class="bi bi-check-circle-fill"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
-                <li><i class="bi bi-check-circle-fill"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
-              </ul>
-              <p>
-                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident
-              </p> -->
-
-        <!-- <div class="position-relative mt-4">
-          <img src="<?= base_url('assets/img/about-2.jpg') ?>" class="img-fluid" alt="">
-          <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn"></a>
-        </div> -->
-
       </div>
     </div>
   </div>
-
 </div>
 
 <!-- </section> -->
 <!-- /About Section -->
 
 <section id="chefs" class="chefs section">
-  <div class="container section-title" data-aos="fade-up">
+  <div class="container section-title" data-aos="fade-up" style="margin-top: 3%; padding-top: 0%; margin-bottom: 3% !important;">
     <!-- <h2>Tim</h2> -->
     <p style="color: #198754;"><span class="description-title" style="color: #198754;">Tim Kami<br></span></p>
   </div>

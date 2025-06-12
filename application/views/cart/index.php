@@ -4,26 +4,140 @@
         padding: 0.75rem;
     }
 
-    .cart-item-card .card-title {
-        font-size: 1rem;
-        margin-bottom: 0.5rem;
+    /* Efek hover dan transisi untuk card */
+    .cart-item-card {
+        transition: all 0.3s ease;
+        border: none;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
-    .cart-item-card .card-text {
-        font-size: 0.9rem;
-        margin-bottom: 0.5rem;
+    .cart-item-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     }
 
-    .cart-item-card .btn-sm {
-        padding: 0.25rem 0.5rem;
-        font-size: 0.75rem;
+    /* Efek untuk gambar */
+    .cart-item-card img {
+        transition: transform 0.3s ease;
     }
 
-    .cart-item-card .input-group .form-control {
-        height: 30px;
-        font-size: 0.9rem;
+    .cart-item-card:hover img {
+        transform: scale(1.05);
     }
 
+    /* Style untuk table */
+    .table {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .table thead {
+        background: linear-gradient(90deg, #1D6300 0%, #77BD27 50%, #DAB914 100%);
+        color: white;
+    }
+
+    .table tbody tr {
+        transition: all 0.2s ease;
+    }
+
+    .table tbody tr:hover {
+        background-color: rgba(119, 189, 39, 0.05);
+        transform: scale(1.01);
+    }
+
+    /* Style untuk buttons */
+    .btn {
+        transition: all 0.3s ease;
+    }
+
+    .btn-success {
+        background: linear-gradient(90deg, #1D6300 0%, #77BD27 100%);
+        border: none;
+    }
+
+    .btn-success:hover {
+        background: linear-gradient(90deg, #77BD27 0%, #DAB914 100%);
+        transform: translateY(-2px);
+    }
+
+    .btn-danger {
+        transition: all 0.3s ease;
+    }
+
+    .btn-danger:hover {
+        transform: translateY(-2px);
+    }
+
+    /* Style untuk input quantity */
+    .input-group {
+        transition: all 0.3s ease;
+    }
+
+    .input-group:focus-within {
+        box-shadow: 0 0 0 0.2rem rgba(119, 189, 39, 0.25);
+    }
+
+    .qty-btn {
+        transition: all 0.2s ease;
+    }
+
+    .qty-btn:hover {
+        background-color: #77BD27;
+        color: white;
+        border-color: #77BD27;
+    }
+
+    /* Style untuk alerts */
+    .alert {
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .alert-success {
+        background-color: rgba(119, 189, 39, 0.1);
+        border-left: 4px solid #77BD27;
+        color: #1D6300;
+    }
+
+    .alert-danger {
+        background-color: rgba(220, 53, 69, 0.1);
+        border-left: 4px solid #dc3545;
+    }
+
+    .alert-info {
+        background-color: rgba(119, 189, 39, 0.1);
+        border-left: 4px solid #77BD27;
+        color: #1D6300;
+    }
+
+    /* Animasi loading untuk update keranjang */
+    @keyframes updateSpinner {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .updating {
+        position: relative;
+        opacity: 0.7;
+    }
+
+    .updating::after {
+        content: '';
+        position: absolute;
+        top: calc(50% - 10px);
+        left: calc(50% - 10px);
+        width: 20px;
+        height: 20px;
+        border: 2px solid #77BD27;
+        border-top-color: transparent;
+        border-radius: 50%;
+        animation: updateSpinner 0.8s linear infinite;
+    }
+
+    /* Existing responsive styles */
     @media (max-width: 576px) {
         .cart-item-card .col-4 {
             padding-right: 0;
@@ -39,7 +153,7 @@
     }
 </style>
 
-<div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+<div class="container" style="margin-top: 50px; margin-bottom: 50px; height: 100vh;">
     <h2>Keranjang Belanja</h2>
 
     <?php if ($this->session->flashdata('success')) : ?>
@@ -164,9 +278,20 @@
 </div>
 
 <script>
-    // Script untuk mengupdate jumlah produk di keranjang
+    // Existing script
     document.addEventListener('DOMContentLoaded', function() {
-        // Tombol tambah/kurang jumlah
+        // Add animation class when page loads
+        document.querySelectorAll('.cart-item-card, .table, .alert').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                el.style.transition = 'all 0.5s ease';
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, 100);
+        });
+
+        // Existing quantity buttons code
         const qtyBtns = document.querySelectorAll('.qty-btn');
         qtyBtns.forEach(btn => {
             btn.addEventListener('click', function() {
@@ -183,14 +308,20 @@
 
                 inputEl.value = qty;
 
+                // Add loading animation
+                const cartItem = this.closest('.cart-item-card') || this.closest('tr');
+                cartItem.classList.add('updating');
+
                 // Update keranjang via AJAX
-                updateCart(id, qty);
+                updateCart(id, qty).finally(() => {
+                    cartItem.classList.remove('updating');
+                });
             });
         });
 
-        // Fungsi untuk mengupdate keranjang
+        // Modified updateCart function to return promise
         function updateCart(id_cart, qty) {
-            fetch('<?= base_url('cart/update'); ?>', {
+            return fetch('<?= base_url('cart/update'); ?>', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
@@ -200,7 +331,6 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === 'success') {
-                        // Reload halaman untuk menampilkan perubahan
                         location.reload();
                     } else {
                         alert('Gagal mengupdate keranjang: ' + data.message);

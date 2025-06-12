@@ -1,7 +1,16 @@
 </main>
+<style>
+    .container p {
+        color: #fff;
+    }
 
-<footer id="footer" class="footer" style="background-color: #f2f2f2;">
+    h4 {
+        color: #fff;
+    }
+</style>
 
+<!-- <footer id="footer" class="footer" style="background-color: #f2f2f2;"> -->
+<footer id="footer" class="footer" style="background: linear-gradient(to top, #0f2f00 0%, #3b5e1a 100%);">
     <div class="container">
         <div class="row gy-3">
             <div class="col-lg-3 col-md-6 d-flex">

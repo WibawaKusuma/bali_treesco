@@ -59,7 +59,7 @@
                     <?php echo form_close(); ?>
 
                     <div class="mt-3 text-center">
-                        <p>Sudah punya akun? <a href="<?= base_url('customer/login'); ?>">Login disini</a></p>
+                        <p style="color: black;">Sudah punya akun? <a href="<?= base_url('customer/login'); ?>">Login disini</a></p>
                     </div>
                 </div>
             </div>

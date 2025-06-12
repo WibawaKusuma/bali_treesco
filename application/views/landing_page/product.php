@@ -5,14 +5,21 @@
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
     background: #fff;
+    margin: 10px;
+    width: 100%;
+    max-width: 280px;
   }
 
   .menu-img {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 15px;
   }
 
   .menu-img:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
   }
 
@@ -24,38 +31,93 @@
     font-family: 'roboto';
   }
 
-  @media (max-width: 768px) {
+  /* p {
+    font-size: smaller;
+  } */
+
+
+  /* Tampilan untuk laptop */
+  @media (min-width: 992px) and (max-width: 1399px) {
     .menu-item {
-      margin: 10px auto;
+      max-width: 200px !important;
+      margin: 0.5% !important;
+      padding: 10px !important;
+    }
+
+    .menu-item .menu-img {
+      padding: 0 0px !important;
+    }
+
+    .menu-item p {
+      font-size: 14px !important;
+      margin-bottom: 8px !important;
+    }
+
+    .menu-item .price {
+      font-size: 16px !important;
+    }
+
+    .menu-item form input[name="qty"] {
+      font-size: 14px !important;
+      padding: 4px 8px !important;
+    }
+
+    .menu-item form button {
+      font-size: 12px !important;
+      padding: 6px 12px !important;
+    }
+  }
+
+
+  /* Tampilan untuk Tablet */
+
+  @media (max-width: 768px) {
+    .section-title {
+      margin-top: 40px !important;
+      margin-bottom: 30px !important;
+    }
+
+    .section-title p {
+      margin-bottom: 60px !important;
+      font-size: 24px;
+    }
+
+    .menu-item {
+      margin: 15px auto !important;
       width: 90%;
     }
 
     .menu-img {
       width: 100%;
       height: auto;
+      margin-bottom: 15px;
     }
 
     .menu-item h5,
     .menu-item p {
       text-align: center;
+      margin-bottom: 10px;
     }
 
     form.d-flex {
       flex-direction: row;
-      /* Menyusun elemen secara horizontal */
       justify-content: space-between;
-      /* Memberikan jarak di antara elemen */
       align-items: center;
-      /* Menjaga elemen tetap terjajar di tengah */
       width: 100%;
-      /* Pastikan form memenuhi lebar */
+      margin-top: 15px;
     }
 
-    /* Mengatur input qty dan button agar memiliki lebar 48% dan bersebelahan */
     form.d-flex input[name="qty"],
     form.d-flex button {
       width: 48%;
-      /* Lebar masing-masing 48% */
+    }
+
+    .tab-content {
+      margin-top: 20px !important;
+    }
+
+    p {
+      font-size: larger;
     }
   }
 </style>
@@ -64,12 +126,12 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- Section Title -->
-<div class="container section-title" data-aos="fade-up">
+<div class="container section-title" data-aos="fade-up" style="margin-top: 3%; padding-top: 0%; margin-bottom: 3% !important;">
   <!-- <h2>Produk Kami</h2> -->
-  <p style="color: #198754;"><span class="description-title" style="color: #198754;">Produk Kami</span></p>
+  <p style="color: #198754; margin-bottom: 30px;"><span class="description-title" style="color: #198754;">Produk Kami</span></p>
 </div><!-- End Section Title -->
 
-<div class="container" style="margin-bottom: 10%;">
+<div class="container-fluid" style="margin-bottom: 10%;">
   <?php if ($this->session->flashdata('success')) : ?>
     <script>
       Swal.fire({
@@ -93,40 +155,19 @@
   <?php endif; ?>
 
 
-
-  <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
-    <!-- <div class="tab-pane fade active show" id="menu-starters">
-      <div class="row gy-5" style="display:flex;justify-content:center;">
-        <?php foreach ($detail as $k) : ?>
-          <?php if ($k->status == 1) { ?>
-            <div class="col-lg-3 menu-item" style="margin: 2%;">
-              <a href="<?= base_url('assets/img/menu/coconut-milk2.jpg') ?>" class="glightbox">
-                <img src="<?= base_url('assets/img/menu/coconut-milk2.jpg') ?>" class="menu-img img-fluid" alt="">
-              </a>
-              <hr>
-              <h4><?= $k->name ?></h4>
-              <p class="ingredients"> <i><?= $k->description ?></i> </p>
-              <p class="price"> Rp.<?= $k->price ?> </p>
-              <a href="https://wa.me/+6289690000509" target="_blank" class="btn btn-sm btn-success col-sm-12">
-                Beli
-              </a>
-            </div>
-          <?php } ?>
-        <?php endforeach; ?>
-      </div>
-    </div> -->
+  <div class="tab-content" data-aos="fade-up" data-aos-delay="200" style="padding-top: 0%; margin-bottom: 3% !important;">
     <div class="tab-pane fade active show" id="menu-starters">
       <div class="row gy-5" style="display:flex;justify-content:center;">
         <?php foreach ($detail as $k) : ?>
           <?php if ($k->status == 1) { ?>
-            <div class="col-lg-2 menu-item" style="margin: 2%;">
+            <div class="col-lg-3 col-md-4 menu-item" style="margin: 1%; max-width: 300px;">
               <a href="<?= base_url('assets/img/product/' . $k->image) ?>" class="glightbox">
                 <img src="<?= base_url('assets/img/product/'  . $k->image) ?>" class="menu-img img-fluid" alt="">
               </a>
               <hr>
-              <h5 style="font-family: calibri !important;"><?= $k->name ?></h5>
-              <p class="ingredients" style="font-size: small;"><?= $k->description ?> </p>
-              <p class="price"> Rp. <?= number_format($k->price, 0, ',', '.') ?> </p>
+              <p style="color: black;"><?= $k->name ?></p>
+              <p class="ingredients" style="color: black;"><?= $k->description ?> </p>
+              <p class="price" style="color: black;"> Rp. <?= number_format($k->price, 0, ',', '.') ?> </p>
 
               <!-- Input untuk jumlah pesanan -->
               <form id="orderForm" action="<?= base_url('landing/process') ?>" method="post" class="d-flex justify-content-between align-items-center">
@@ -135,7 +176,6 @@
                 <input type="hidden" name="price" value="<?= $k->price ?>">
 
                 <!-- Input untuk menentukan jumlah -->
-                <!-- <input type="number" name="qty" id="qty" class="form-control text-center" placeholder="Qty" min="1" value="1" style="margin-right: 10px;"> -->
                 <input type="number" name="qty" class="form-control text-center" placeholder="Qty" min="1" value="1" style="margin-right: 10px;">
 
 
@@ -144,7 +184,7 @@
                   data-id="<?= $k->id_product ?>"
                   data-name="<?= $k->name ?>"
                   data-price="<?= $k->price ?>">
-                  <i class="bi bi-cart-plus"></i> Masuk Keranjang
+                  <i class="bi bi-cart-plus" style="font-size: smaller;"></i> Masuk Keranjang
                 </button>
 
               </form>
@@ -153,24 +193,6 @@
         <?php endforeach; ?>
       </div>
     </div>
-    <!-- <div class="tab-pane fade" id="menu-dinner">
-      <div class="tab-header text-center">
-        <p>Menu</p>
-        <h3>Dinner</h3>
-      </div>
-      <div class="row gy-5">
-        <div class="col-lg-4 menu-item">
-          <a href="<?= base_url('assets/img/menu/menu-item-1.png') ?>" class="glightbox"><img src="<?= base_url('assets/img/menu/menu-item-1.png') ?>" class="menu-img img-fluid" alt=""></a>
-          <h4>Magnam Tiste</h4>
-          <p class="ingredients">
-            Lorem, deren, trataro, filede, nerada
-          </p>
-          <p class="price">
-            $5.95
-          </p>
-        </div>
-      </div>
-    </div> -->
   </div>
 
 

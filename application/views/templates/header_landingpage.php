@@ -34,9 +34,92 @@
     <style>
         .cart-count {
             position: relative;
-            top: -8px;
-            font-size: 10px;
-            margin-left: -5px;
+            top: -6px;
+            font-size: 9px;
+            margin-left: -4px;
+        }
+
+        /* Tambahkan style untuk header */
+        .header {
+            transition: all 0.5s ease-in-out !important;
+            position: fixed !important;
+            width: 100%;
+            top: 0;
+            z-index: 997;
+        }
+
+        .header.header-scrolled {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        .header.header-shown {
+            transform: translateY(0);
+            opacity: 1;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Style untuk nama customer */
+        .navmenu .dropdown>a span {
+            color: #fff !important;
+        }
+
+        .navmenu .dropdown>a:hover span {
+            opacity: 0.8;
+        }
+
+        /* Mobile styles */
+        @media (max-width: 1199px) {
+            .navmenu ul {
+                /* background: linear-gradient(90deg, #1D6300 0%, #77BD27 50%, #DAB914 100%) !important; */
+                background: #436646 !important;
+            }
+
+            .navmenu a,
+            .navmenu a:focus {
+                color: #fff !important;
+            }
+
+            .navmenu .dropdown>a span {
+                color: #fff !important;
+                font-weight: 600;
+                font-size: 16px;
+            }
+
+            .navmenu .dropdown .dropdown-menu {
+                background: rgba(255, 255, 255, 0.1) !important;
+                margin: 5px 15px !important;
+                border-radius: 5px;
+            }
+
+            .navmenu .dropdown .dropdown-menu a {
+                color: #fff !important;
+                padding: 10px 20px;
+            }
+
+            .navmenu .dropdown .dropdown-menu a:hover {
+                background: rgba(255, 255, 255, 0.2);
+            }
+
+            .mobile-nav-toggle {
+                color: #fff !important;
+            }
+
+            .navmenu .dropdown>a i {
+                background: rgba(255, 255, 255, 0.2) !important;
+                color: #fff !important;
+            }
+        }
+
+        /* Sesuaikan margin-top pada main */
+        .main {
+            margin-top: 60px !important;
+        }
+
+        /* Tambahkan style untuk hero section */
+        .hero {
+            margin-top: -60px !important;
+            padding-top: 60px !important;
         }
     </style>
 
@@ -74,6 +157,13 @@
             margin-top: auto;
         }
 
+        .cart-count {
+            position: relative;
+            top: -6px;
+            font-size: 9px;
+            margin-left: -4px;
+        }
+
         /* Responsif dropdown menu */
         @media (max-width: 1279px) {
             .navmenu .dropdown-menu {
@@ -100,13 +190,20 @@
                 margin-bottom: 8px;
                 padding-left: 15px;
             }
+        }
 
-            .mobile-nav-active .navmenu ul {
-                display: block;
+        /* Desktop dropdown menu */
+        @media (min-width: 1280px) {
+            .navmenu .dropdown ul {
+                min-width: 200px !important;
+                width: auto !important;
             }
 
-            .mobile-nav-active .navmenu ul li {
-                position: relative;
+            .navmenu .dropdown ul li a {
+                width: 100% !important;
+                display: block !important;
+                white-space: nowrap !important;
+
             }
         }
     </style>
@@ -117,13 +214,13 @@
     <header id="header" class="header d-flex align-items-center sticky-top">
         <div class="container position-relative d-flex align-items-center justify-content-between">
 
-            <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+            <a href="<?= base_url('landing') ?>" class="logo d-flex align-items-center me-auto me-xl-0">
                 <img src="<?= base_url('assets/img/logo-bali-treeco-round.png') ?>" alt="">
                 <h1 class="sitename">Bali Treesco</h1>
                 <span>.</span>
             </a>
 
-            <nav id="navmenu" class="navmenu">
+            <!-- <nav id="navmenu" class="navmenu">
                 <ul>
                     <li><a href="<?= base_url('landing') ?>">Home<br></a></li>
                     <li><a href="<?= base_url('landing/about') ?>">About</a></li>
@@ -135,29 +232,108 @@
                     <?php if ($this->session->userdata('customer_logged_in')) : ?>
                         <li>
                             <a href="<?= base_url('cart') ?>">
-                                <!-- <i class="bi bi-cart"></i>  -->
                                 Chart
                                 <span class="cart-count badge bg-danger rounded-pill" id="cart-count">0</span>
                             </a>
                         </li>
                         <li class="dropdown">
-                            <a href="#">
-                                <!-- <i class="bi bi-person-circle"></i>  -->
+                            <a>
                                 <span><?= $this->session->userdata('customer_name') ?></span>
                                 <i class="bi bi-chevron-down toggle-dropdown"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="<?= base_url('customer/profile') ?>"><i class="bi bi-person me-2"></i>My Profile</a></li>
-                                <li><a href="<?= base_url('order') ?>"><i class="bi bi-bag-check me-2"></i>My Order</a></li>
-                                <li><a href="<?= base_url('customer/logout') ?>"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                                <li><a href="<?= base_url('customer/profile') ?>"></i>My Profile</a></li>
+                                <li><a href="<?= base_url('order') ?>"></i>My Order</a></li>
+                                <li><a href="<?= base_url('customer/logout') ?>"></i>Logout</a></li>
                             </ul>
                         </li>
                     <?php endif; ?>
                 </ul>
-                <i class=" mobile-nav-toggle d-xl-none bi bi-list"></i>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list" style="color: #162117;"></i>
+            </nav> -->
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <?php if ($this->session->userdata('customer_logged_in')) : ?>
+                        <li class="dropdown">
+                            <a>
+                                <span><?= $this->session->userdata('customer_name') ?></span>
+                                <i class="bi bi-chevron-down toggle-dropdown"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="<?= base_url('customer/profile') ?>"></i>My Profile</a></li>
+                                <li><a href="<?= base_url('order') ?>"></i>My Order</a></li>
+                                <li><a href="<?= base_url('customer/logout') ?>"></i>Logout</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="<?= base_url('cart') ?>">
+                                Chart
+                                <span class="cart-count badge bg-danger rounded-pill" id="cart-count">0</span>
+                            </a>
+                        </li>
+                    <?php endif; ?>
+                    <li><a href="<?= base_url('landing') ?>">Home<br></a></li>
+                    <li><a href="<?= base_url('landing/about') ?>">About</a></li>
+                    <li><a href=" <?= base_url('landing/product') ?>">Product</a></li>
+                    <li><a href="<?= base_url('landing/contact') ?>">Contact</a></li>
+                    <?php if (!$this->session->userdata('customer_logged_in')) : ?>
+                        <li><a href="<?= base_url('customer/login') ?>">Login</a></li>
+                    <?php endif; ?>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list" style="color: #162117;"></i>
             </nav>
-            <!-- <a class="btn-getstarted" href="index.html#book-a-table">Book a Table</a> -->
         </div>
     </header>
 
     <main class="main">
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                let lastScrollTop = 0;
+                let header = document.querySelector('.header');
+                let scrollThreshold = 100; // Jarak scroll sebelum header hilang
+                let isScrollingUp = false;
+                let scrollTimer = null;
+
+                window.addEventListener('scroll', function() {
+                    let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+                    // Clear timeout sebelumnya
+                    if (scrollTimer !== null) {
+                        clearTimeout(scrollTimer);
+                    }
+
+                    if (currentScroll > scrollThreshold) {
+                        if (currentScroll > lastScrollTop) {
+                            // Scrolling down
+                            if (!header.classList.contains('header-scrolled')) {
+                                header.classList.add('header-scrolled');
+                                header.classList.remove('header-shown');
+                            }
+                        } else {
+                            // Scrolling up
+                            if (header.classList.contains('header-scrolled')) {
+                                header.classList.remove('header-scrolled');
+                                header.classList.add('header-shown');
+                            }
+                        }
+                    } else {
+                        // Di atas threshold
+                        header.classList.remove('header-scrolled');
+                        header.classList.remove('header-shown');
+                    }
+
+                    // Set timeout baru
+                    scrollTimer = setTimeout(function() {
+                        if (currentScroll <= scrollThreshold) {
+                            header.classList.remove('header-scrolled');
+                            header.classList.remove('header-shown');
+                        }
+                    }, 150);
+
+                    lastScrollTop = currentScroll;
+                }, {
+                    passive: true
+                });
+            });
+        </script>

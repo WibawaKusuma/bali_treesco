@@ -48,22 +48,22 @@
           <div class="col-xl-4">
             <div class="icon-box d-flex flex-column justify-content-center align-items-center">
               <i class="bi bi-clipboard-data"></i>
-              <h4>Sehat & Alami</h4>
-              <p>Gula kelapa kami memiliki indeks glikemik rendah, cocok untuk penderita diabetes dan gaya hidup sehat.</p>
+              <h4 class="text-center">Sehat & Alami</h4>
+              <p class="text-center">Gula kelapa kami memiliki indeks glikemik rendah, cocok untuk penderita diabetes dan gaya hidup sehat.</p>
             </div>
           </div><!-- End Icon Box -->
           <div class="col-xl-4">
             <div class="icon-box d-flex flex-column justify-content-center align-items-center">
               <i class="bi bi-clipboard-data"></i>
-              <h4>Sehat & Alami</h4>
-              <p>Gula kelapa kami memiliki indeks glikemik rendah, cocok untuk penderita diabetes dan gaya hidup sehat.</p>
+              <h4 class="text-center">Sumber Berkelanjutan</h4>
+              <p class="text-center">Produksi kami ramah lingkungan, mendukung petani lokal, dan keberlanjutan masa depan.</p>
             </div>
           </div><!-- End Icon Box -->
           <div class="col-xl-4">
             <div class="icon-box d-flex flex-column justify-content-center align-items-center">
               <i class="bi bi-clipboard-data"></i>
-              <h4>Sehat & Alami</h4>
-              <p>Gula kelapa kami memiliki indeks glikemik rendah, cocok untuk penderita diabetes dan gaya hidup sehat.</p>
+              <h4 class="text-center">Proses Higienis Terjamin</h4>
+              <p class="text-center">Diproses dengan standar ketat, kualitas dan kebersihan produk selalu terjaga.</p>
             </div>
           </div>
         </div>

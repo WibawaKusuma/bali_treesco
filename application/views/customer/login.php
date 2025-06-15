@@ -4,8 +4,8 @@
         min-height: 100vh;
         display: flex;
         align-items: center;
-        padding: 40px 0;
-        margin-top: -60px;
+        padding: 80px 0 40px 0;
+        margin-top: 0;
     }
 
     .card {
@@ -91,7 +91,18 @@
         color: #1D6300;
     }
 
+    /* Responsive untuk laptop dan desktop */
+    @media (min-width: 992px) {
+        .login-section {
+            padding: 100px 0 60px 0;
+        }
+    }
+
     @media (max-width: 768px) {
+        .login-section {
+            padding: 60px 0 40px 0;
+        }
+
         .card-body {
             padding: 20px;
         }

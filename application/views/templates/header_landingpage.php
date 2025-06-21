@@ -13,10 +13,7 @@
     <link href="<?= base_url('assets/img/apple-touch-icon.png') ?>" rel=" apple-touch-icon">
 
     <!-- Fonts -->
-    <link href=" <?= base_url('https://fonts.googleapis.com') ?>" rel=" preconnect">
-    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="<?= base_url('assets/css/fonts.css') ?>" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="<?= base_url('assets/vendor/bootstrap/css/bootstrap.min.css') ?>" rel=" stylesheet">
@@ -29,7 +26,8 @@
     <link href="<?= base_url('assets/css/main.css') ?>" rel=" stylesheet">
 
     <!-- SweetAlert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="<?= base_url('assets/js/lib/sweetalert2/sweetalert2.min.css') ?>">
+    <script src="<?= base_url('assets/js/lib/sweetalert2/sweetalert2.all.min.js') ?>"></script>
 
     <style>
         .cart-count {

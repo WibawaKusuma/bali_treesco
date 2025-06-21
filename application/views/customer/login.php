@@ -30,7 +30,7 @@
         font-size: 24px;
         font-weight: 600;
         margin: 0;
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Poppins', sans-serif !important;
     }
 
     .card-body {
@@ -41,6 +41,7 @@
         color: #555;
         font-weight: 500;
         font-size: 14px;
+        font-family: 'Poppins', sans-serif !important;
     }
 
     .form-control {
@@ -48,6 +49,7 @@
         padding: 12px 15px;
         border: 1px solid #ddd;
         transition: all 0.3s ease;
+        font-family: 'Poppins', sans-serif !important;
     }
 
     .form-control:focus {
@@ -62,6 +64,7 @@
         font-weight: 500;
         border-radius: 8px;
         transition: all 0.3s ease;
+        font-family: 'Poppins', sans-serif !important;
     }
 
     .btn-success:hover {
@@ -85,6 +88,7 @@
         text-decoration: none;
         font-weight: 500;
         transition: all 0.3s ease;
+        font-family: 'Poppins', sans-serif !important;
     }
 
     .text-center a:hover {
@@ -106,6 +110,11 @@
         .card-body {
             padding: 20px;
         }
+    }
+
+    /* Pastikan semua teks menggunakan font Poppins */
+    * {
+        font-family: 'Poppins', sans-serif !important;
     }
 </style>
 

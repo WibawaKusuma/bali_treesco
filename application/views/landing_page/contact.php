@@ -1,4 +1,9 @@
 <style>
+  /* Pastikan semua teks menggunakan font Poppins */
+  * {
+    font-family: 'Poppins', sans-serif !important;
+  }
+
   .contact .info-item {
     background: #ffffff;
     padding: 30px;
@@ -39,12 +44,14 @@
     font-weight: 600;
     margin-bottom: 10px;
     color: #1D6300;
+    font-family: 'Poppins', sans-serif !important;
   }
 
   .contact .info-item p {
     margin: 0;
     font-size: 15px;
     color: #666;
+    font-family: 'Poppins', sans-serif !important;
   }
 
   .contact .php-email-form {
@@ -61,6 +68,7 @@
     border-radius: 5px;
     padding: 12px 15px;
     transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif !important;
   }
 
   .contact .php-email-form input:focus,
@@ -76,6 +84,7 @@
     color: #fff;
     border-radius: 50px;
     transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif !important;
   }
 
   .contact .php-email-form button:hover {
@@ -188,7 +197,7 @@
   </div>
 </section>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="<?= base_url('assets/js/lib/jquery/jquery-3.6.0.min.js') ?>"></script>
 <script>
   $(document).ready(function() {
     $("#feedbackForm").submit(function(e) {

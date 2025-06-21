@@ -163,8 +163,8 @@
                             <i class="bi bi-check-circle-fill text-success" style="font-size: 3rem;"></i>
                         </div>
                         <div class="alert alert-success">
-                            <p class="mb-1 text-center"><strong>Transaksi Telah Selesai</strong></p>
-                            <p class="mb-0 text-center">Terima kasih telah berbelanja di Bali Treesco!</p>
+                            <p class="mb-1 text-center" style="color: #198754;"><strong>Transaksi Telah Selesai</strong></p>
+                            <p class="mb-0 text-center" style="color: #198754;">Terima kasih telah berbelanja di Bali Treesco!</p>
                         </div>
                         <div class="order-detail-info d-flex justify-content-between mb-2">
                             <div class="label">Tanggal Selesai:</div>
@@ -212,7 +212,7 @@
                         <!-- <p class="mt-3 mb-0">Setelah melakukan pembayaran, silakan konfirmasi melalui WhatsApp ke nomor <a href="https://wa.me/<?= $wa_number ?>?text=Halo%2C%20saya%20ingin%20konfirmasi%20pembayaran%20untuk%20pesanan%20%23<?= $order->order_number; ?>%20sebesar%20Rp%20<?= number_format($order->total_price, 0, ',', '.'); ?>." target="_blank" class="text-success"><strong><?= $phone ?></strong></a> dengan menyertakan bukti transfer dan nomor pesanan.</p> -->
                         <div class="alert alert-warning mt-3" style="border-left: 4px solid #dc3545;">
                             <h5 class="mb-2"><i class="bi bi-bell-fill me-2"></i>Penting!</h5>
-                            <p class="mb-0">Setelah melakukan pemesanan, silakan konfirmasi melalui WhatsApp ke nomor <a href="https://wa.me/<?= $wa_number ?>?text=Halo%2C%20saya%20ingin%20konfirmasi%20pembayaran%20untuk%20pesanan%20%23<?= $order->order_number; ?>%20sebesar%20Rp%20<?= number_format($order->total_price, 0, ',', '.'); ?>." target="_blank" class="text-success"><strong><?= $phone ?></strong></a> dengan menyertakan nomor pesanan.</p>
+                            <p class="mb-0" style="color: #666;">Setelah melakukan pemesanan, silakan konfirmasi melalui WhatsApp ke nomor <a href="https://wa.me/<?= $wa_number ?>?text=Halo%2C%20saya%20ingin%20konfirmasi%20pembayaran%20untuk%20pesanan%20%23<?= $order->order_number; ?>%20sebesar%20Rp%20<?= number_format($order->total_price, 0, ',', '.'); ?>." target="_blank" class="text-success"><strong><?= $phone ?></strong></a> dengan menyertakan nomor pesanan.</p>
                         </div>
                         <div class="text-center mt-3">
                             <a href="https://wa.me/<?= $wa_number ?>?text=Halo%2C%20saya%20ingin%20konfirmasi%20pembayaran%20untuk%20pesanan%20%23<?= $order->order_number; ?>%20sebesar%20Rp%20<?= number_format($order->total_price, 0, ',', '.'); ?>." target="_blank" class="btn btn-success btn-lg w-100">

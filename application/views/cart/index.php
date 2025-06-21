@@ -153,132 +153,47 @@
     }
 </style>
 
-<div class="container" style="margin-top: 50px; margin-bottom: 50px; height: 100vh;">
-    <h2>Keranjang Belanja</h2>
-
-    <?php if ($this->session->flashdata('success')) : ?>
-        <div class="alert alert-success">
-            <?= $this->session->flashdata('success'); ?>
-        </div>
-    <?php endif; ?>
-
-    <?php if ($this->session->flashdata('error')) : ?>
-        <div class="alert alert-danger">
-            <?= $this->session->flashdata('error'); ?>
-        </div>
-    <?php endif; ?>
-
-    <?php if (empty($cart_items)) : ?>
-        <div class="alert alert-info">
-            Keranjang belanja Anda kosong. <a href="<?= base_url('landing/product'); ?>">Belanja sekarang</a>
-        </div>
-    <?php else : ?>
-        <!-- Tampilan tabel untuk desktop -->
-        <div class="table-responsive d-none d-md-block">
-            <table class="table table-bordered table-hover">
-                <thead class="table-success">
-                    <tr>
-                        <th>Produk</th>
-                        <th>Nama</th>
-                        <th>Harga</th>
-                        <th>Jumlah</th>
-                        <th>Subtotal</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($cart_items as $item) : ?>
-                        <tr>
-                            <td>
-                                <img src="<?= base_url('assets/img/product/' . $item->image); ?>" alt="<?= $item->name; ?>" class="img-thumbnail" style="max-width: 100px;">
-                            </td>
-                            <td><?= $item->name; ?></td>
-                            <td>Rp <?= number_format($item->price, 0, ',', '.'); ?></td>
-                            <td>
-                                <div class="input-group" style="max-width: 150px;">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary qty-btn" data-action="decrease" data-id="<?= $item->id_cart; ?>">-</button>
-                                    <input type="number" class="form-control text-center qty-input" value="<?= $item->qty; ?>" min="1" data-id="<?= $item->id_cart; ?>" readonly>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary qty-btn" data-action="increase" data-id="<?= $item->id_cart; ?>">+</button>
-                                </div>
-                            </td>
-                            <td>Rp <?= number_format($item->subtotal, 0, ',', '.'); ?></td>
-                            <td>
-                                <a href="<?= base_url('cart/remove/' . $item->id_cart); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini dari keranjang?');">
-                                    <i class="bi bi-trash"></i> Hapus
-                                </a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="4" class="text-end"><strong>Total</strong></td>
-                        <td colspan="2"><strong>Rp <?= number_format($total_price, 0, ',', '.'); ?></strong></td>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-
-        <!-- Tampilan card untuk mobile dan tablet -->
-        <div class="d-md-none">
-            <?php foreach ($cart_items as $item) : ?>
-                <div class="card mb-3 cart-item-card">
-                    <div class="row g-0">
-                        <div class="col-4">
-                            <img src="<?= base_url('assets/img/product/' . $item->image); ?>" alt="<?= $item->name; ?>" class="img-fluid rounded-start" style="object-fit: cover; height: 100%;">
-                        </div>
-                        <div class="col-8">
-                            <div class="card-body">
-                                <h5 class="card-title"><?= $item->name; ?></h5>
-                                <p class="card-text">Harga: Rp <?= number_format($item->price, 0, ',', '.'); ?></p>
-
-                                <div class="d-flex align-items-center mb-2">
-                                    <span class="me-2">Jumlah:</span>
-                                    <div class="input-group" style="max-width: 120px;">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary qty-btn" data-action="decrease" data-id="<?= $item->id_cart; ?>">-</button>
-                                        <input type="number" class="form-control text-center qty-input" value="<?= $item->qty; ?>" min="1" data-id="<?= $item->id_cart; ?>" readonly>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary qty-btn" data-action="increase" data-id="<?= $item->id_cart; ?>">+</button>
-                                    </div>
-                                </div>
-
-                                <p class="card-text"><strong>Subtotal: Rp <?= number_format($item->subtotal, 0, ',', '.'); ?></strong></p>
-
-                                <a href="<?= base_url('cart/remove/' . $item->id_cart); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini dari keranjang?');">
-                                    <i class="bi bi-trash"></i> Hapus
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Total Belanja</h5>
-                    <p class="card-text fs-4 fw-bold">Rp <?= number_format($total_price, 0, ',', '.'); ?></p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tombol aksi -->
-        <div class="d-flex flex-column flex-md-row justify-content-between mt-4">
-            <a href="<?= base_url('landing/product'); ?>" class="btn btn-secondary mb-2 mb-md-0">
-                <i class="bi bi-arrow-left"></i> Lanjutkan Belanja
-            </a>
-            <div class="d-flex flex-column flex-md-row">
-                <a href="<?= base_url('cart/clear'); ?>" class="btn btn-outline-danger mb-2 mb-md-0 me-md-2" onclick="return confirm('Apakah Anda yakin ingin mengosongkan keranjang?');">
-                    <i class="bi bi-trash"></i> Kosongkan Keranjang
-                </a>
-                <a href="<?= base_url('cart/checkout'); ?>" class="btn btn-success">
-                    <i class="bi bi-check2-circle"></i> Checkout
-                </a>
-            </div>
-        </div>
-    <?php endif; ?>
-</div>
+<!-- Load SweetAlert -->
+<link rel="stylesheet" href="<?= base_url('assets/js/lib/sweetalert2/sweetalert2.min.css') ?>">
+<script src="<?= base_url('assets/js/lib/sweetalert2/sweetalert2.all.min.js') ?>"></script>
 
 <script>
-    // Existing script
+    // Fungsi konfirmasi di scope global
+    function confirmDelete(url, productName) {
+        Swal.fire({
+            title: 'Konfirmasi Hapus',
+            html: `Apakah Anda yakin ingin menghapus <strong>${productName}</strong> dari keranjang?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#dc3545',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Ya, Hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = url;
+            }
+        });
+    }
+
+    function confirmClearCart(url) {
+        Swal.fire({
+            title: 'Kosongkan Keranjang?',
+            text: 'Apakah Anda yakin ingin mengosongkan keranjang belanja?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#dc3545',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Ya, Kosongkan!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = url;
+            }
+        });
+    }
+
+    // Event listener untuk DOM Content Loaded
     document.addEventListener('DOMContentLoaded', function() {
         // Add animation class when page loads
         document.querySelectorAll('.cart-item-card, .table, .alert').forEach(el => {
@@ -333,13 +248,147 @@
                     if (data.status === 'success') {
                         location.reload();
                     } else {
-                        alert('Gagal mengupdate keranjang: ' + data.message);
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Gagal mengupdate keranjang: ' + data.message,
+                            icon: 'error',
+                            confirmButtonColor: '#198754'
+                        });
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('Terjadi kesalahan saat mengupdate keranjang');
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Terjadi kesalahan saat mengupdate keranjang',
+                        icon: 'error',
+                        confirmButtonColor: '#198754'
+                    });
                 });
         }
     });
 </script>
+
+<div class="container" style="margin-top: 50px; margin-bottom: 50px; height: 100vh;">
+    <h2>Keranjang Belanja</h2>
+
+    <?php if ($this->session->flashdata('success')) : ?>
+        <div class="alert alert-success">
+            <?= $this->session->flashdata('success'); ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($this->session->flashdata('error')) : ?>
+        <div class="alert alert-danger">
+            <?= $this->session->flashdata('error'); ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if (empty($cart_items)) : ?>
+        <div class="alert alert-info">
+            Keranjang belanja Anda kosong. <a href="<?= base_url('landing/product'); ?>">Belanja sekarang</a>
+        </div>
+    <?php else : ?>
+        <!-- Tampilan tabel untuk desktop -->
+        <div class="table-responsive d-none d-md-block">
+            <table class="table table-bordered table-hover">
+                <thead class="table-success">
+                    <tr>
+                        <th>Produk</th>
+                        <th>Nama</th>
+                        <th>Harga</th>
+                        <th>Jumlah</th>
+                        <th>Subtotal</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($cart_items as $item) : ?>
+                        <tr>
+                            <td>
+                                <img src="<?= base_url('assets/img/product/' . $item->image); ?>" alt="<?= $item->name; ?>" class="img-thumbnail" style="max-width: 100px;">
+                            </td>
+                            <td><?= $item->name; ?></td>
+                            <td>Rp <?= number_format($item->price, 0, ',', '.'); ?></td>
+                            <td>
+                                <div class="input-group" style="max-width: 150px;">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary qty-btn" data-action="decrease" data-id="<?= $item->id_cart; ?>">-</button>
+                                    <input type="number" class="form-control text-center qty-input" value="<?= $item->qty; ?>" min="1" data-id="<?= $item->id_cart; ?>" readonly>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary qty-btn" data-action="increase" data-id="<?= $item->id_cart; ?>">+</button>
+                                </div>
+                            </td>
+                            <td>Rp <?= number_format($item->subtotal, 0, ',', '.'); ?></td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" onclick="confirmDelete('<?= base_url('cart/remove/' . $item->id_cart); ?>', '<?= $item->name; ?>')">
+                                    <i class="bi bi-trash"></i> Hapus
+                                </button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4" class="text-end"><strong>Total</strong></td>
+                        <td colspan="2"><strong>Rp <?= number_format($total_price, 0, ',', '.'); ?></strong></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <!-- Tampilan card untuk mobile dan tablet -->
+        <div class="d-md-none">
+            <?php foreach ($cart_items as $item) : ?>
+                <div class="card mb-3 cart-item-card">
+                    <div class="row g-0">
+                        <div class="col-4">
+                            <img src="<?= base_url('assets/img/product/' . $item->image); ?>" alt="<?= $item->name; ?>" class="img-fluid rounded-start" style="object-fit: cover; height: 100%;">
+                        </div>
+                        <div class="col-8">
+                            <div class="card-body">
+                                <h5 class="card-title"><?= $item->name; ?></h5>
+                                <p class="card-text">Harga: Rp <?= number_format($item->price, 0, ',', '.'); ?></p>
+
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="me-2">Jumlah:</span>
+                                    <div class="input-group" style="max-width: 120px;">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary qty-btn" data-action="decrease" data-id="<?= $item->id_cart; ?>">-</button>
+                                        <input type="number" class="form-control text-center qty-input" value="<?= $item->qty; ?>" min="1" data-id="<?= $item->id_cart; ?>" readonly>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary qty-btn" data-action="increase" data-id="<?= $item->id_cart; ?>">+</button>
+                                    </div>
+                                </div>
+
+                                <p class="card-text"><strong>Subtotal: Rp <?= number_format($item->subtotal, 0, ',', '.'); ?></strong></p>
+
+                                <button class="btn btn-danger btn-sm" onclick="confirmDelete('<?= base_url('cart/remove/' . $item->id_cart); ?>', '<?= $item->name; ?>')">
+                                    <i class="bi bi-trash"></i> Hapus
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Total Belanja</h5>
+                    <p class="card-text fs-4 fw-bold">Rp <?= number_format($total_price, 0, ',', '.'); ?></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tombol aksi -->
+        <div class="d-flex flex-column flex-md-row justify-content-between mt-4">
+            <a href="<?= base_url('landing/product'); ?>" class="btn btn-secondary mb-2 mb-md-0">
+                <i class="bi bi-arrow-left"></i> Lanjutkan Belanja
+            </a>
+            <div class="d-flex flex-column flex-md-row">
+                <button class="btn btn-outline-danger mb-2 mb-md-0 me-md-2" onclick="confirmClearCart('<?= base_url('cart/clear'); ?>')">
+                    <i class="bi bi-trash"></i> Kosongkan Keranjang
+                </button>
+                <a href="<?= base_url('cart/checkout'); ?>" class="btn btn-success">
+                    <i class="bi bi-check2-circle"></i> Checkout
+                </a>
+            </div>
+        </div>
+    <?php endif; ?>
+</div>

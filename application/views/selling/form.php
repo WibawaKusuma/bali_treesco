@@ -305,16 +305,14 @@
                     }
                     ?>
 
-
-
                     <a href="<?= base_url('selling') ?>" class="btn btn-sm btn-secondary"><i class="fa fa-arrow-left"></i> Back</a>
                 </div>
             </form>
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="<?= base_url('assets/js/lib/jquery/jquery-3.6.0.min.js') ?>"></script>
+<script src="<?= base_url('assets/js/lib/sweetalert2/sweetalert2.all.min.js') ?>"></script>
 
 <style>
     /* Style untuk form yang readonly */

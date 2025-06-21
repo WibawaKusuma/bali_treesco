@@ -1,4 +1,9 @@
 <style>
+  /* Pastikan semua teks menggunakan font Poppins */
+  * {
+    font-family: 'Poppins', sans-serif !important;
+  }
+
   .menu-item {
     padding: 15px;
     border-radius: 10px;
@@ -28,7 +33,7 @@
   }
 
   .konfirmasi {
-    font-family: 'roboto';
+    font-family: 'Poppins', sans-serif !important;
   }
 
   /* p {
@@ -122,8 +127,9 @@
   }
 </style>
 <!-- Load SweetAlert -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="<?= base_url('assets/js/lib/sweetalert2/sweetalert2.min.css') ?>">
+<script src="<?= base_url('assets/js/lib/sweetalert2/sweetalert2.all.min.js') ?>"></script>
+<script src="<?= base_url('assets/js/lib/jquery/jquery-3.6.0.min.js') ?>"></script>
 
 <!-- Section Title -->
 <div class="container section-title" data-aos="fade-up" style="margin-top: 3%; padding-top: 0%; margin-bottom: 3% !important;">

@@ -177,6 +177,7 @@
             width: 200px;
             border-bottom: 1px solid #333;
             margin-bottom: 5px;
+            margin-top: 50px;
         }
 
         .signature-name {
@@ -287,17 +288,17 @@
 
         <table class="total-table">
             <tr>
-                <td class="total-label">Subtotal Produk:</td>
+                <td class="total-label">Subtotal Produk</td>
                 <td class="total-value">Rp <?= number_format($total, 0, ',', '.') ?></td>
             </tr>
             <?php if (!empty($order->shipping_cost) && $order->shipping_cost > 0): ?>
                 <tr>
-                    <td class="total-label">Ongkir:</td>
+                    <td class="total-label">Ongkir</td>
                     <td class="total-value">Rp <?= number_format($order->shipping_cost, 0, ',', '.') ?></td>
                 </tr>
             <?php endif; ?>
             <tr>
-                <td class="total-label"><strong>Total :</strong></td>
+                <td class="total-label"><strong>Total </strong></td>
                 <td class="total-value"><strong>Rp <?= number_format($selling->total_price, 0, ',', '.') ?></strong></td>
             </tr>
         </table>

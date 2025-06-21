@@ -1,4 +1,72 @@
-<div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+<style>
+    /* Pastikan semua teks menggunakan font Poppins */
+    * {
+        font-family: 'Poppins', sans-serif !important;
+    }
+
+    .card {
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .card-header {
+        padding: 20px;
+        border: none;
+    }
+
+    .card-header h4 {
+        font-size: 24px;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    .form-label {
+        color: #555;
+        font-weight: 500;
+        font-size: 14px;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        transition: all 0.3s ease;
+    }
+
+    .btn-success {
+        background: linear-gradient(90deg, #1D6300 0%, #77BD27 100%);
+        border: none;
+        padding: 12px;
+        font-weight: 500;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-success:hover {
+        background: linear-gradient(90deg, #77BD27 0%, #DAB914 100%);
+        transform: translateY(-2px);
+    }
+
+    .text-center a {
+        color: #77BD27;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .text-center a:hover {
+        color: #1D6300;
+    }
+</style>
+
+<div class="container" style="margin-top: 80px; margin-bottom: 80px;">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card shadow">

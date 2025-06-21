@@ -1,7 +1,29 @@
 <style>
+  /* Pastikan semua teks menggunakan font Poppins */
+  * {
+    font-family: 'Poppins', sans-serif !important;
+  }
+
   .team-member .social i {
     font-size: 20px;
     margin: 0 5px;
+  }
+
+  .team-member .member-info h4 {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 600;
+  }
+
+  .team-member .member-info span {
+    font-family: 'Poppins', sans-serif !important;
+  }
+
+  .content p {
+    font-family: 'Poppins', sans-serif !important;
+  }
+
+  .section-title p {
+    font-family: 'Poppins', sans-serif !important;
   }
 
   @media (max-width: 576px) {

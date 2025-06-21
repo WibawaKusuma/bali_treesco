@@ -142,12 +142,11 @@ class Selling extends CI_Controller
 
             // Tambahkan ke tabel tr_kasir untuk pencatatan
             $kasir = [
-                'id_selling'   => $id_order, // Gunakan id_order sebagai id_selling
-                'id_order'     => $id_order, // Tambahkan relasi ke tr_order
-                'no_invoice'   => $no_invoice, // Tambahkan nomor invoice otomatis
+                'id_order'     => $id_order,
+                'no_invoice'   => $no_invoice,
                 'qty'          => $qty,
                 'total_price'  => $total_price,
-                'shipping_cost' => $shipping_cost, // Tambahkan ongkir
+                'shipping_cost' => $shipping_cost,
                 'id_user'      => $user['id_user'],
                 'created_at'   => date('Y-m-d H:i:s'),
                 'status'       => 1

@@ -49,10 +49,10 @@
             <div class="col-lg-3 col-md-6">
                 <h4>Follow Us</h4>
                 <div class="social-links d-flex">
-                    <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-                    <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                    <a href="https://www.instagram.com/balitreesco/" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                    <a href="https://www.facebook.com/share/1YcrMxfJMQ/?mibextid=wwXIfr" target="_blank" class="facebook" title="Facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.instagram.com/balitreesco/" target="_blank" class="instagram" title="Instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="tiktok" title="Tiktok"><i class="bi bi-tiktok"></i></a>
+                    <a href="https://shopee.co.id/balitreesco" target="_blank" class="shopee" title="Shopee"><i class="bi bi-shop"></i></a>
                     <a href="<?= base_url('auth') ?>" title="Admin Login"><i class="bi bi-person-lock"></i></a>
                 </div>
             </div>

@@ -26,7 +26,7 @@ class Report_model extends CI_Model
         $to_date_with_time = $to_date . ' 23:59:59';
 
         // Query untuk mendapatkan data pendapatan
-        $this->db->select('k.id_selling, k.no_invoice, k.total_price, k.created_at, o.order_number, c.name as customer_name, u.name as user_name');
+        $this->db->select('k.no_invoice, k.total_price, k.created_at, o.order_number, c.name as customer_name, u.name as user_name');
         $this->db->from('tr_kasir k');
         $this->db->join('tr_order o', 'k.id_order = o.id_order', 'left');
         $this->db->join('m_customer c', 'o.id_customer = c.id_customer', 'left');

@@ -563,7 +563,8 @@
                                     <?php foreach ($income_data as $data) : ?>
                                         <tr>
                                             <td class="text-center"><?= $no++; ?></td>
-                                            <td><a href="<?= base_url('order/invoice/' . $data->id_selling); ?>" target="_blank"><?= $data->no_invoice; ?></a></td>
+                                            <!-- <td><a href="<?= base_url('order/invoice/' . $data->id_selling); ?>" target="_blank"><?= $data->no_invoice; ?></a></td> -->
+                                            <td><?= $data->no_invoice; ?></td>
                                             <td><?= date('d/m/Y H:i', strtotime($data->created_at)); ?></td>
                                             <td><?= $data->customer_name ?: '-'; ?></td>
                                             <td class="text-right">Rp <?= number_format($data->total_price, 0, ',', '.'); ?></td>

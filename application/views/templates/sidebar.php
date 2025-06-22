@@ -44,30 +44,30 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="<?= base_url('report') ?>" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                                <!-- <i class="far fa-circle nav-icon"></i> -->
                                 <p>Dashboard Laporan</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="<?= base_url('report/income') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Laporan Pendapatan</p>
+                                <p> Pendapatan</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="<?= base_url('report/customer') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Laporan Customer</p>
+                                <p> Customer</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="<?= base_url('auth/logout') ?>" class="nav-link">
                         <i class="nav-icon fas fa-fw fa-sign-out-alt"></i>
                         <p>Logout</p>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

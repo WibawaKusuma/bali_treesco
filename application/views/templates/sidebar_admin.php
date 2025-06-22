@@ -33,12 +33,12 @@
                         <p>User</p>
                     </a>
                 </li> -->
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="<?= base_url('auth/logout') ?>" class="nav-link">
                         <i class="nav-icon fas fa-fw fa-sign-out-alt"></i>
                         <p>Logout</p>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
